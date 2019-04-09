@@ -23,6 +23,9 @@ class App extends Component {
       </div>
     );
   }
+  static get SITE_URL() {
+    return "http://localhost:8080/";
+  }
 }
 
 export default App;
