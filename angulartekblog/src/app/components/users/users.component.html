@@ -1,0 +1,20 @@
+<div class="container">
+  <table class="table table-bordered table-inverse">
+    <tr>
+      <th>Owner Name</th>
+      <th>Email</th>
+      <th>ID</th>
+    </tr>
+    <tr class="clickable" *ngFor="let user of users" [routerLink]="['/users/posts/', user.id]">
+      <td>
+        {{user.name}}
+      </td>
+      <td>
+        {{user.email}}
+      </td>
+      <td>
+        {{user.id}}
+      </td>
+    </tr>
+  </table>
+</div>
