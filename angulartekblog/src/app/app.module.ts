@@ -8,18 +8,22 @@ import {HttpClientModule} from '@angular/common/http';
 import {UsersComponent} from './components/users/users.component';
 import { UsersPostsComponent } from './components/users-posts/users-posts.component';
 import { PostComponent } from './components/post/post.component';
+import {FormsModule} from '@angular/forms';
+import { UserFormComponent } from './components/user-form/user-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UsersComponent,
     UsersPostsComponent,
-    PostComponent
+    PostComponent,
+    UserFormComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [UserListService],
   bootstrap: [AppComponent]
