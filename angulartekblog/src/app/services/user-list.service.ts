@@ -24,11 +24,13 @@ export class UserListService {
   }
 
   getPost(postId: string) {
-    const url = '/server/post/' + postId;
+    const url = 'server/post/' + postId;
     return this.http.get(url);
   }
 
   postUser(user: User) {
-    return this.http.post<User>('server/users', user);
+    this.http.post('server/users/', JSON.stringify(user) , httpOptions)
+      .subscribe(data => {console.log(data); },
+        err => {console.log('error occurred'); });
   }
 }

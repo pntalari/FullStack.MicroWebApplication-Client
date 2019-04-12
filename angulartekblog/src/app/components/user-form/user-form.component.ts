@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {User} from '../../models/user';
+import {User} from '../../models/User';
+import {UserListService} from '../../services/user-list.service';
 
 @Component({
   selector: 'app-user-form',
@@ -7,13 +8,20 @@ import {User} from '../../models/user';
   styleUrls: ['./user-form.component.css']
 })
 export class UserFormComponent implements OnInit {
-  model = new User(1, 'testing', 'testing@edu.com', null, null);
-  sumbited = false;
-  onSumbit() { this.sumbited = true; }
+  model = new User(null, '', '', [], []);
+  submitted = false;
+  onSubmit() {
+    this.userListService.postUser(this.model);
+    this.submitted = true;
+  }
 
-  constructor() { }
+  constructor(private userListService: UserListService) { }
 
   ngOnInit() {
+  }
+
+  newUser() {
+    this.model = new User(null, '', '', [], []);
   }
 
 }
