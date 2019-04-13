@@ -41,13 +41,9 @@ export class UserListService {
   }
 
   createPost(post: Post) {
-    this.http.post('server/post/', JSON.stringify(post), httpOptions)
-      .subscribe(data => {
-          console.log(data);
-        },
-        err => {
-          console.log('error occurred');
-        });
+    this.http.post('server/users/post/', JSON.stringify(post), httpOptions)
+      .subscribe(data => {console.log(data); },
+        err => { console.log('error occurred'); });
   }
 
   deletePost(post: Post) {

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {UserListService} from '../../services/user-list.service';
+import {Post} from '../../models/Post';
 
 @Component({
   selector: 'app-post',
@@ -18,10 +19,9 @@ export class PostComponent implements OnInit {
   }
 
   getPost(userId) {
-    this.userListService.getPost(userId.params.value.id).subscribe(
-      data => {
-        this.post = data;
-      },
+    this.userListService.getPost(userId.params.value.id)
+      .subscribe(
+      data => {this.post = data; },
       err => console.log(err),
       () => console.log('Posts loaded')
     );
