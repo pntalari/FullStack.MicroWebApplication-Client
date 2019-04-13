@@ -16,10 +16,11 @@ export class PostComponent implements OnInit {
 
   ngOnInit() {
     this.getPost(this.postId);
+    this.getPosts();
   }
 
   getPost(userId) {
-    this.userListService.getPost(userId.params.value.id)
+    this.userListService.getPostById(userId.params.value.id)
       .subscribe(
       data => {this.post = data; },
       err => console.log(err),
@@ -27,4 +28,11 @@ export class PostComponent implements OnInit {
     );
   }
 
+  private getPosts() {
+    this.userListService.getPosts() .subscribe(
+      data => { this.post = data; },
+      err => console.log(err),
+      () => console.log('users loaded')
+    );
+  }
 }

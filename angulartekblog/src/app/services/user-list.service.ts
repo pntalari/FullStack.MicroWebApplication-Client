@@ -20,12 +20,20 @@ export class UserListService {
     return this.http.get('server/users');
   }
 
-  getPosts(userId: string) {
+  getUserById(userId: string) {
+    return this.http.get('server/users/' + userId);
+  }
+
+  getPosts() {
+    return this.http.get('server/users/posts');
+  }
+
+  getPostsByUser(userId: string) {
     const url = 'server/users/posts/' + userId;
     return this.http.get(url);
   }
 
-  getPost(postId: string) {
+  getPostById(postId: string) {
     const url = 'server/post/' + postId;
     return this.http.get(url);
   }
@@ -41,7 +49,7 @@ export class UserListService {
   }
 
   createPost(post: Post) {
-    this.http.post('server/users/post/', JSON.stringify(post), httpOptions)
+    this.http.post('server/users/posts', JSON.stringify(post), httpOptions)
       .subscribe(data => {console.log(data); },
         err => { console.log('error occurred'); });
   }
