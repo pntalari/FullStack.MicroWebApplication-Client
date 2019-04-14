@@ -15,7 +15,7 @@ export class UserListService {
   constructor(private http: HttpClient) { }
 
   getUsers() {
-    return this.http.get('server/users');
+    return this.http.get('http://localhost:8080/users');
   }
 
   getPosts(userId: string) {
