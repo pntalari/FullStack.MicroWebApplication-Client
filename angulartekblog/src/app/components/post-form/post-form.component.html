@@ -39,7 +39,7 @@
       <div class="form-group">
         <label for="author">Author</label>
         <input type="text" class="form-control" id="author"
-               [(ngModel)]="model.author" name="author">
+               [(ngModel)]="model.creator" name="author">
       </div>
 
       <button type="submit" class="btn btn-success" [disabled]="!postForm.form.valid">Submit</button>
@@ -63,7 +63,7 @@
     </div>
     <div class="row">
       <div class="col-xs-3">Posts</div>
-      <div class="col-xs-9">{{ model.author }}</div>
+      <div class="col-xs-9">{{ model.creator }}</div>
     </div>
     <br>
     <button class="btn btn-primary" (click)="submitted=false">Edit</button>

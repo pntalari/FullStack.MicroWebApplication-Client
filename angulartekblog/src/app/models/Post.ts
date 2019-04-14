@@ -5,6 +5,8 @@ export class Post {
     public summary: string,
     public content: string,
     public date: Date,
-    public author: string
+    public comments: any[],
+    public tags: any[],
+    public creator: any
   ) {}
 }

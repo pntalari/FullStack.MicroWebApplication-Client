@@ -49,15 +49,22 @@ export class UserListService {
   }
 
   createPost(post: Post) {
-    this.http.post('server/users/posts', JSON.stringify(post), httpOptions)
+    this.http.post('server/users/createPost/', JSON.stringify(post), httpOptions)
       .subscribe(data => {console.log(data); },
-        err => { console.log('error occurred'); });
+        err => { console.log('error occurred creating post'); });
   }
 
   deletePost(post: Post) {
+    this.http.delete('/users/deletePost/' + post.id, httpOptions)
+      .subscribe(data => {console.log(data); },
+        err => { console.log('Error occurred deleting the post'); });
   }
 
   updatePost(post: Post) {
+    this.http.put('/server/users/updatePost/' + post.id, JSON.stringify(post), httpOptions)
+      .subscribe(data => {console.log(data); },
+        err => { console.log('Error occured updating the post'); });
   }
+
 
 }
