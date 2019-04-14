@@ -15,7 +15,10 @@ export class UserListService {
   constructor(private http: HttpClient) { }
 
   getUsers() {
-    return this.http.get('http://localhost:8080/users');
+    const token = localStorage.getItem('access_token');
+    console.log(token);
+    return this.http.get('server/users',
+      {headers: new HttpHeaders().set('Authorization', 'Bearer ' + token)});
   }
 
   getPosts(userId: string) {

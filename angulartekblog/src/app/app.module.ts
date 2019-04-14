@@ -10,6 +10,9 @@ import { UsersPostsComponent } from './components/users-posts/users-posts.compon
 import { PostComponent } from './components/post/post.component';
 import {FormsModule} from '@angular/forms';
 import { UserFormComponent } from './components/user-form/user-form.component';
+import { CallbackComponent } from './components/callback/callback.component';
+import {AuthService} from './services/auth.service';
+import {AuthGuard} from './services/auth.guard';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,8 @@ import { UserFormComponent } from './components/user-form/user-form.component';
     UsersComponent,
     UsersPostsComponent,
     PostComponent,
-    UserFormComponent
+    UserFormComponent,
+    CallbackComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +29,7 @@ import { UserFormComponent } from './components/user-form/user-form.component';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [UserListService],
+  providers: [UserListService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

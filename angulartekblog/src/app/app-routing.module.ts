@@ -4,12 +4,16 @@ import {UsersComponent} from './components/users/users.component';
 import {UsersPostsComponent} from './components/users-posts/users-posts.component';
 import {PostComponent} from './components/post/post.component';
 import {UserFormComponent} from './components/user-form/user-form.component';
+import {CallbackComponent} from './components/callback/callback.component';
+import {AuthGuard} from './services/auth.guard';
 
 const routes: Routes = [
-  {path: 'users', component: UsersComponent},
+  {path: '', component: UserFormComponent},
+  {path: 'admin', component: UsersComponent, canActivate: [AuthGuard]},
   {path: 'users/posts/:id', component: UsersPostsComponent },
   {path: 'post/:id', component: PostComponent},
-  {path: 'create', component: UserFormComponent}
+  {path: 'create', component: UserFormComponent},
+  {path: 'callback', component: CallbackComponent}
 ];
 
 @NgModule({
