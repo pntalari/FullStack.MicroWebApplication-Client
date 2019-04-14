@@ -55,7 +55,8 @@ export class UserListService {
   }
 
   deletePost(post: Post) {
-    this.http.delete('/users/deletePost/' + post.id, httpOptions)
+    this.http.delete('/users/deletePost/' + post.id, {params: {postTitle: post.title, postSummary: post.summary,
+      postContent: post.content, postComments: post.comments, postTags: post.tags}})
       .subscribe(data => {console.log(data); },
         err => { console.log('Error occurred deleting the post'); });
   }
