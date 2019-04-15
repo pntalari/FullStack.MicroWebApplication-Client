@@ -1,5 +1,27 @@
 <div class="container">
-  <h1>{{post.postTitle}}</h1>
-  <h3>{{post.postSummary}}</h3>
-  <div>{{post.postContent}}</div>
+  <table class="table table-bordered table-inverse">
+    <tr>
+      <th>Post Title</th>
+      <th>Post Summary</th>
+      <th>Post Content</th>
+      <th>Post Author</th>
+    </tr>
+    <tr class="clickable" *ngFor="let postObj of post" [routerLink]="['users/posts/', postObj.id]">
+      <td>
+        {{postObj.title}}
+      </td>
+      <td>
+        {{postObj.summary}}
+      </td>
+      <td>
+        {{postObj.content}}
+      </td>
+      <td>
+        {{postObj.author}}
+      </td>
+      <td>
+        {{postObj.getDate()}}
+      </td>
+    </tr>
+  </table>
 </div>

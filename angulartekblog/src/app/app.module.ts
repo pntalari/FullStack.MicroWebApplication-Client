@@ -10,11 +10,11 @@ import { UsersPostsComponent } from './components/users-posts/users-posts.compon
 import { PostComponent } from './components/post/post.component';
 import {FormsModule} from '@angular/forms';
 import { UserFormComponent } from './components/user-form/user-form.component';
-import {TagService} from './services/tag.service';
-import { TagComponent } from './components/tag/tag.component';
 import { TagItemsComponent } from './components/tag-items/tag-items.component';
-import { HeaderComponent } from './components/header/header.component';
-import { AddTagsComponent } from './components/add-tags/add-tags.component';
+import { PostFormComponent } from './components/post-form/post-form.component';
+import { TagFormComponent } from './components/tag-form/tag-form.component';
+import { TagsComponent } from './components/tags/tags.component';
+
 
 @NgModule({
   declarations: [
@@ -23,10 +23,11 @@ import { AddTagsComponent } from './components/add-tags/add-tags.component';
     UsersPostsComponent,
     PostComponent,
     UserFormComponent,
-    TagComponent,
     TagItemsComponent,
-    HeaderComponent,
-    AddTagsComponent
+    AddTagsComponent,
+    PostFormComponent,
+    TagFormComponent,
+    TagsComponent
   ],
   imports: [
     BrowserModule,
