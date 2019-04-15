@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {User} from '../models/User';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -36,11 +35,5 @@ export class BlogApiService {
   getPost(postId: string) {
     const url = 'server/post/' + postId;
     return this.http.get(url);
-  }
-
-  postUser(user: User) {
-    this.http.post('server/users/', JSON.stringify(user) , httpOptions)
-      .subscribe(data => {console.log(data); },
-        err => {console.log('error occurred'); });
   }
 }
