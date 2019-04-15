@@ -6,7 +6,7 @@ export class Post {
     public content: string,
     public createdDate: Date,
     public comments: any[],
-    public tags: any[],
+    public tagSet: any[],
     public creator: any
   ) {}
 }
