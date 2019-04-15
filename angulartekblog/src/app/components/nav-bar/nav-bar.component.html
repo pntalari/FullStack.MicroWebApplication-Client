@@ -1,5 +1,22 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="background-color:#0A96B2">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button style="color: #28DA05" [hidden]="!isUserLoggedIn" (click)="logout()"> Logout </button>
-    <button style="color: #28DA05" [hidden]="isUserLoggedIn" (click)="login()"> Login </button>
+<!--<nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="background-color:#0A96B2">-->
+<!--    <a class="navbar-brand" href="#">Navbar</a>-->
+<!--    <button style="color: #28DA05" [hidden]="!isUserLoggedIn" (click)="logout()"> Logout </button>-->
+<!--    <button style="color: #28DA05" [hidden]="isUserLoggedIn" (click)="login()"> Login </button>-->
+<!--</nav>-->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="#">  <img src="../../assets/images/Logo.png" alt="GenericPlaceHolder" class="img-thumbnail"
+                                          style="height:7vw; background-color: aliceblue"/></a>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <button type="button" class="btn btn-secondary" style="color: #28DA05" [hidden]="!isUserLoggedIn" (click)="logout()">Logout</button>
+      </li>
+      <li class="nav-item">
+        <button  type="button" class="btn btn-success" style="color: white" [hidden]="isUserLoggedIn" (click)="login()">Login</button>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search">
+      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+    </form>
 </nav>
