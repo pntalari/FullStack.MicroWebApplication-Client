@@ -4,7 +4,7 @@ export class Post {
     public title: string,
     public summary: string,
     public content: string,
-    public date: Date,
+    public createdDate: Date,
     public comments: any[],
     public tags: any[],
     public creator: any
