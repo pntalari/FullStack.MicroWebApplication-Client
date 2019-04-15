@@ -4,7 +4,7 @@
       <th>Title</th>
       <th>Summary</th>
     </tr>
-    <tr class="clickable" *ngFor="let post of posts" [routerLink]="['/post/', post.postId]">
+    <tr class="clickable" *ngFor="let post of posts" [routerLink]="['/post/', post.postID]">
       <td>
         {{post.postTitle}}
       </td>

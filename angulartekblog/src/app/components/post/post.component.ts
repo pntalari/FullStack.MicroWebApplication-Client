@@ -1,7 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {UserListService} from '../../services/user-list.service';
-import {Post} from '../../models/Post';
+import {BlogApiService} from '../../services/blog.api.service';
 
 @Component({
   selector: 'app-post',
@@ -11,28 +10,17 @@ import {Post} from '../../models/Post';
 export class PostComponent implements OnInit {
   public post;
 
-  constructor(private postId: ActivatedRoute, private userListService: UserListService) {
-  }
+  constructor(private postId: ActivatedRoute, private blogApiService: BlogApiService) { }
 
   ngOnInit() {
     this.getPost(this.postId);
-  //  this.getPosts();
   }
 
   getPost(postId) {
-    this.userListService.getPostById(postId.params.value.id)
-      .subscribe(
-      data => {this.post = data; },
+    this.blogApiService.getPostById(postId.params.value.id).subscribe(
+      data => { this.post = data; },
       err => console.log(err),
-      () => console.log('Posts loaded')
     );
   }
 
-  private getPosts() {
-    this.userListService.getPosts() .subscribe(
-      data => { this.post = data; },
-      err => console.log(err),
-      () => console.log('users loaded')
-    );
-  }
 }

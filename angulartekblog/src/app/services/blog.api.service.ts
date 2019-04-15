@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {User} from '../models/User';
 import {Post} from '../models/Post';
 
 const httpOptions = {
@@ -11,13 +10,22 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class UserListService {
+export class BlogApiService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient) { }
+  signUp() {
+    const token = localStorage.getItem('access_token');
+    console.log(token);
+    return this.http.post('server/users/sign-up', localStorage.getItem('id_token'),
+      {headers: new HttpHeaders().set('Authorization', 'Bearer ' + token)})
+      .subscribe(data => {console.log(data); },
+        err => {console.log('error occurred'); });
   }
 
   getUsers() {
-    return this.http.get('server/users');
+    const token = localStorage.getItem('access_token');
+    return this.http.get('server/users',
+      {headers: new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('access_token'))});
   }
 
   getUserById(userId: string) {
@@ -36,16 +44,6 @@ export class UserListService {
   getPostById(postId: string) {
     const url = 'server/post/' + postId;
     return this.http.get(url);
-  }
-
-  postUser(user: User) {
-    this.http.post('server/users/', JSON.stringify(user), httpOptions)
-      .subscribe(data => {
-          console.log(data);
-        },
-        err => {
-          console.log('error occurred');
-        });
   }
 
   createPost(post: Post) {

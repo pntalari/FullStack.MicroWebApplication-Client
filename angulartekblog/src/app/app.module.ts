@@ -3,13 +3,17 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {UserListService} from './services/user-list.service';
+import {BlogApiService} from './services/blog.api.service';
 import {HttpClientModule} from '@angular/common/http';
 import {UsersComponent} from './components/users/users.component';
 import { UsersPostsComponent } from './components/users-posts/users-posts.component';
 import { PostComponent } from './components/post/post.component';
 import {FormsModule} from '@angular/forms';
-import { UserFormComponent } from './components/user-form/user-form.component';
+import { CallbackComponent } from './components/callback/callback.component';
+import {AuthService} from './services/auth.service';
+import {AuthGuard} from './services/auth.guard';
+import { OpeningPageComponent } from './components/opening-page/opening-page.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { PostFormComponent } from './components/post-form/post-form.component';
 
 @NgModule({
@@ -18,7 +22,9 @@ import { PostFormComponent } from './components/post-form/post-form.component';
     UsersComponent,
     UsersPostsComponent,
     PostComponent,
-    UserFormComponent,
+    CallbackComponent,
+    OpeningPageComponent,
+    NavBarComponent,
     PostFormComponent
   ],
   imports: [
@@ -27,7 +33,7 @@ import { PostFormComponent } from './components/post-form/post-form.component';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [UserListService],
+  providers: [BlogApiService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
