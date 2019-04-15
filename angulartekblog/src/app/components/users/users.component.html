@@ -1,16 +1,13 @@
 <div class="container">
   <table class="table table-bordered table-inverse">
+    <h2>Click to access Posts by user</h2>
     <tr>
-      <th>Owner Name</th>
-      <th>Email</th>
+      <th>User Name</th>
       <th>ID</th>
     </tr>
     <tr class="clickable" *ngFor="let user of users" [routerLink]="['/users/posts/', user.id]">
       <td>
         {{user.name}}
-      </td>
-      <td>
-        {{user.email}}
       </td>
       <td>
         {{user.id}}

@@ -3,12 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 import {UsersComponent} from './components/users/users.component';
 import {UsersPostsComponent} from './components/users-posts/users-posts.component';
 import {PostComponent} from './components/post/post.component';
-import {UserFormComponent} from './components/user-form/user-form.component';
 import {CallbackComponent} from './components/callback/callback.component';
 import {AuthGuard} from './services/auth.guard';
+import {OpeningPageComponent} from './components/opening-page/opening-page.component';
 
 const routes: Routes = [
-  {path: '', component: UserFormComponent},
+  {path: '', component: OpeningPageComponent},
   {path: 'users', component: UsersComponent, canActivate: [AuthGuard]},
   {path: 'users/posts/:id', component: UsersPostsComponent },
   {path: 'post/:id', component: PostComponent},

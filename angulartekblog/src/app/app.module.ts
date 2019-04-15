@@ -3,16 +3,17 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {UserListService} from './services/user-list.service';
+import {BlogApiService} from './services/blog.api.service';
 import {HttpClientModule} from '@angular/common/http';
 import {UsersComponent} from './components/users/users.component';
 import { UsersPostsComponent } from './components/users-posts/users-posts.component';
 import { PostComponent } from './components/post/post.component';
 import {FormsModule} from '@angular/forms';
-import { UserFormComponent } from './components/user-form/user-form.component';
 import { CallbackComponent } from './components/callback/callback.component';
 import {AuthService} from './services/auth.service';
 import {AuthGuard} from './services/auth.guard';
+import { OpeningPageComponent } from './components/opening-page/opening-page.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
@@ -20,8 +21,9 @@ import {AuthGuard} from './services/auth.guard';
     UsersComponent,
     UsersPostsComponent,
     PostComponent,
-    UserFormComponent,
-    CallbackComponent
+    CallbackComponent,
+    OpeningPageComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +31,7 @@ import {AuthGuard} from './services/auth.guard';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [UserListService, AuthService, AuthGuard],
+  providers: [BlogApiService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

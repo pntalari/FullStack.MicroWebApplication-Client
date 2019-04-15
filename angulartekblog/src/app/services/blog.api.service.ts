@@ -10,11 +10,12 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class UserListService {
+export class BlogApiService {
 
   constructor(private http: HttpClient) { }
   signUp() {
     const token = localStorage.getItem('access_token');
+    console.log(token);
     return this.http.post('server/users/sign-up', localStorage.getItem('id_token'),
       {headers: new HttpHeaders().set('Authorization', 'Bearer ' + token)})
       .subscribe(data => {console.log(data); },

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import * as auth0 from 'auth0-js';
-import {UserListService} from './user-list.service';
+import {BlogApiService} from './blog.api.service';
 
 @Injectable()
 export class AuthService {
@@ -15,7 +15,7 @@ export class AuthService {
     scope: 'profile email openid view:user view:users'
   });
 
-  constructor(public router: Router, private userListService: UserListService ) {}
+  constructor(public router: Router, private userListService: BlogApiService ) {}
 
   public login(): void {
     this.auth0.authorize();
@@ -26,9 +26,9 @@ export class AuthService {
       if (authResult && authResult.accessToken && authResult.idToken) {
         window.location.hash = '';
         this.setSession(authResult);
-        this.router.navigate(['admin']);
+        this.router.navigate(['users']);
       } else if (err) {
-        this.router.navigate(['admin']);
+        this.router.navigate(['users']);
         console.log(err);
       }
     });

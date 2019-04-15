@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {UserListService} from '../../services/user-list.service';
+import {BlogApiService} from '../../services/blog.api.service';
 
 @Component({
   selector: 'app-post',
@@ -10,7 +10,7 @@ import {UserListService} from '../../services/user-list.service';
 export class PostComponent implements OnInit {
   public post;
 
-  constructor(private postId: ActivatedRoute, private userListService: UserListService) { }
+  constructor(private postId: ActivatedRoute, private userListService: BlogApiService) { }
 
   ngOnInit() {
     this.getPost(this.postId);

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {UserListService} from '../../services/user-list.service';
+import {BlogApiService} from '../../services/blog.api.service';
 import {AuthService} from '../../services/auth.service';
 
 @Component({
@@ -10,7 +10,7 @@ import {AuthService} from '../../services/auth.service';
 export class UsersComponent implements OnInit {
   public users;
 
-  constructor(private userListService: UserListService, private authService: AuthService) { }
+  constructor(private userListService: BlogApiService, private authService: AuthService) { }
 
   ngOnInit() {
     this.getUsers();
