@@ -10,14 +10,14 @@ import {BlogApiService} from '../../services/blog.api.service';
 export class PostComponent implements OnInit {
   public post;
 
-  constructor(private postId: ActivatedRoute, private userListService: BlogApiService) { }
+  constructor(private postId: ActivatedRoute, private blogApiService: BlogApiService) { }
 
   ngOnInit() {
     this.getPost(this.postId);
   }
 
-  getPost(userId) {
-    this.userListService.getPost(userId.params.value.id).subscribe(
+  getPost(postId) {
+    this.blogApiService.getPostById(postId.params.value.id).subscribe(
       data => { this.post = data; },
       err => console.log(err),
     );

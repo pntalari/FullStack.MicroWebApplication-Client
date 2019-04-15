@@ -14,6 +14,7 @@ import {AuthService} from './services/auth.service';
 import {AuthGuard} from './services/auth.guard';
 import { OpeningPageComponent } from './components/opening-page/opening-page.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { PostFormComponent } from './components/post-form/post-form.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
     PostComponent,
     CallbackComponent,
     OpeningPageComponent,
-    NavBarComponent
+    NavBarComponent,
+    PostFormComponent
   ],
   imports: [
     BrowserModule,

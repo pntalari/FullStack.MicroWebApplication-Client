@@ -17,7 +17,7 @@ export class UsersPostsComponent implements OnInit {
   }
 
   getPosts(userId) {
-    this.userListService.getPosts(userId.params.value.id).subscribe(
+    this.userListService.getPostsByUser(userId.params.value.id).subscribe(
       data => { this.posts = data; },
       err => console.log(err),
       () => console.log('posts loaded')

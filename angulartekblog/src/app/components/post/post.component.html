@@ -1,5 +1,7 @@
 <div class="container">
-  <h1>{{post.postTitle}}</h1>
-  <h3>{{post.postSummary}}</h3>
-  <div>{{post.postContent}}</div>
+  <h1>{{post.postTitle}}</h1><br/>
+  <h3>{{post.postSummary}}</h3><br/>
+  <p>By: {{post.creator.name}}</p>
+  <p>Created: {{post.createdDate}}</p>
+  <p>{{post.postContent}}</p>
 </div>
