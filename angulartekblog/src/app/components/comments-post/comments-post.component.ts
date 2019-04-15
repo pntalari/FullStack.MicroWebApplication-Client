@@ -12,4 +12,4 @@ export class CommentsPostComponent implements OnInit {
   ngOnInit() {
   }
 
-}
+
