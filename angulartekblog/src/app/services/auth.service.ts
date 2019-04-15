@@ -1,20 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import * as auth0 from 'auth0-js';
+import {UserListService} from './user-list.service';
 
 @Injectable()
 export class AuthService {
 
   auth0 = new auth0.WebAuth({
-    clientID: 'rEmBCLKdlnF2Ivx11BjblhpqJjBnVGVv',
+    clientID: 'v6OMhNmN0OO3aPQnC9VnEACBDX7COR0N',
     domain: 'whatthetek.auth0.com',
     responseType: 'token id_token',
     audience: 'http://localhost:8080',
     redirectUri: 'http://localhost:4200/callback',
-    scope: 'openid view:user view:users'
+    scope: 'profile email openid view:user view:users'
   });
 
-  constructor(public router: Router) {}
+  constructor(public router: Router, private userListService: UserListService ) {}
 
   public login(): void {
     this.auth0.authorize();
@@ -38,6 +39,7 @@ export class AuthService {
     const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
+    this.userListService.signUp();
     localStorage.setItem('expires_at', expiresAt);
   }
 

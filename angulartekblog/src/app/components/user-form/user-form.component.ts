@@ -8,7 +8,7 @@ import {UserListService} from '../../services/user-list.service';
   styleUrls: ['./user-form.component.css']
 })
 export class UserFormComponent implements OnInit {
-  model = new User( '', '', [], []);
+  model = new User( '', [], []);
   submitted = false;
   onSubmit() {
     this.userListService.postUser(this.model);
@@ -21,7 +21,7 @@ export class UserFormComponent implements OnInit {
   }
 
   newUser() {
-    this.model = new User( '', '', [], []);
+    this.model = new User(  '', [], []);
   }
 
 }

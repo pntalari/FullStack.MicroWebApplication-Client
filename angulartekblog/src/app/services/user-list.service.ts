@@ -13,12 +13,18 @@ const httpOptions = {
 export class UserListService {
 
   constructor(private http: HttpClient) { }
+  signUp() {
+    const token = localStorage.getItem('access_token');
+    return this.http.post('server/users/sign-up', localStorage.getItem('id_token'),
+      {headers: new HttpHeaders().set('Authorization', 'Bearer ' + token)})
+      .subscribe(data => {console.log(data); },
+        err => {console.log('error occurred'); });
+  }
 
   getUsers() {
     const token = localStorage.getItem('access_token');
-    console.log(token);
     return this.http.get('server/users',
-      {headers: new HttpHeaders().set('Authorization', 'Bearer ' + token)});
+      {headers: new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('access_token'))});
   }
 
   getPosts(userId: string) {
