@@ -10,6 +10,12 @@ import {BlogApiService} from '../../services/blog.api.service';
 export class PostFormComponent implements OnInit {
   model = new Post(null, '', '', '', new Date(), null, null, '');
   submitted = false;
+
+  constructor(private blogApiService: BlogApiService) {}
+
+  ngOnInit() {
+  }
+
   onSubmit() {
     this.blogApiService.createPost(this.model);
     this.submitted = true;
@@ -23,11 +29,6 @@ export class PostFormComponent implements OnInit {
   onDelete() {
     this.blogApiService.deletePost(this.model);
     this.submitted = true;
-  }
-
-  constructor(private blogApiService: BlogApiService) {}
-
-  ngOnInit() {
   }
 
   newPost() {

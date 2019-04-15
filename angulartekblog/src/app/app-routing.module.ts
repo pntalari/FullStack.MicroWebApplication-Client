@@ -13,10 +13,8 @@ const routes: Routes = [
   {path: 'users', component: UsersComponent, canActivate: [AuthGuard]},
   {path: 'users/posts/:id', component: UsersPostsComponent },
   {path: 'post/:id', component: PostComponent},
-  {path: 'users/createPost', component: PostFormComponent},
-  {path: 'users/posts', component: PostComponent},
-  {path: 'users/updatePost/:id', component: PostFormComponent},
-  {path: 'users/deletePost/:id', component: PostFormComponent},
+  {path: 'post/newPost', component: PostFormComponent},
+  {path: 'post/edit/:id', component: PostFormComponent},
   {path: 'callback', component: CallbackComponent}
 ];
 
