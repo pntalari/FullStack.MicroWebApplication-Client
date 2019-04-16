@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {BlogApiService} from '../../services/blog.api.service';
 import {ActivatedRoute} from '@angular/router';
 import {Post} from '../../models/Post';
-import Any = jasmine.Any;
 
 @Component({
   selector: 'app-post-edit',

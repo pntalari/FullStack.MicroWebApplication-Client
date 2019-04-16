@@ -1,10 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable} from 'rxjs';
 import {Post} from '../models/Post';
 
 const httpOptions = {
-  headers: new HttpHeaders({'Content-Type': 'application/json'})
+  headers: new HttpHeaders({'Content-Type': 'application/json'}).set('Authorization', 'Bearer ' + localStorage.getItem('access_token'))
 };
 
 @Injectable({
@@ -13,9 +12,9 @@ const httpOptions = {
 export class BlogApiService {
 
   constructor(private http: HttpClient) { }
+
   signUp() {
     const token = localStorage.getItem('access_token');
-    console.log(localStorage.getItem('id_token'));
     return this.http.post('server/users/sign-up', localStorage.getItem('id_token'),
       {headers: new HttpHeaders().set('Authorization', 'Bearer ' + token)})
       .subscribe(data => {console.log(data); },
@@ -47,20 +46,20 @@ export class BlogApiService {
   }
 
   createPost(post: Post) {
-    this.http.post('server/users/createPost/', (JSON.stringify(post), localStorage.getItem('id_token')), httpOptions)
+    this.http.post('server/users/createPost/' + localStorage.getItem('id_token'), JSON.stringify(post), httpOptions)
       .subscribe(data => {console.log(data); },
         err => { console.log('error occurred creating post'); });
   }
 
   deletePost(post: Post) {
-    this.http.delete('/users/deletePost/' + post.id, {params: {postTitle: post.title, postSummary: post.summary,
-      postContent: post.content, postComments: post.comments, postTags: post.tags}})
+    this.http.delete('/users/deletePost/' + post.postID, {params: {postTitle: post.postTitle, postSummary: post.postSummary,
+      postContent: post.postContent, postComments: post.comments, postTags: post.tagsSet}})
       .subscribe(data => {console.log(data); },
         err => { console.log('Error occurred deleting the post'); });
   }
 
   updatePost(post: Post) {
-    this.http.put('/server/users/updatePost/' + post.id, JSON.stringify(post), httpOptions)
+    this.http.put('/server/users/updatePost/' + post.postID, JSON.stringify(post), httpOptions)
       .subscribe(data => {console.log(data); },
         err => { console.log('Error occured updating the post'); });
   }
