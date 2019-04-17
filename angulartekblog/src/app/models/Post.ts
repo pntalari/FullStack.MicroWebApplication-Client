@@ -1,12 +1,12 @@
 export class Post {
   constructor(
-    public id: number,
-    public title: string,
-    public summary: string,
-    public content: string,
-    public date: Date,
+    public postID: number,
+    public postTitle: string,
+    public postSummary: string,
+    public postContent: string,
+    public createdDate: Date,
     public comments: any[],
-    public tags: any[],
+    public tagsSet: any[],
     public creator: any
   ) {}
 }
