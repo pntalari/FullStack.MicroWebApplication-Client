@@ -46,9 +46,11 @@ export class BlogApiService {
   }
 
   createPost(post: Post) {
-    this.http.post('server/users/createPost/' + localStorage.getItem('id_token'), JSON.stringify(post), httpOptions)
+    console.log(JSON.stringify(post));
+    return this.http.post('/server/users/createPost/' + localStorage.getItem('id_token'),
+              JSON.stringify(post), httpOptions)
       .subscribe(data => {console.log(data); },
-        err => { console.log('error occurred creating post'); });
+         err => { console.log('error occurred creating post'); });
   }
 
   deletePost(post: Post) {

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Post} from '../../models/Post';
 import {BlogApiService} from '../../services/blog.api.service';
 
@@ -8,6 +8,8 @@ import {BlogApiService} from '../../services/blog.api.service';
   styleUrls: ['./post-form.component.css']
 })
 export class PostFormComponent implements OnInit {
+ // @Input() model: Post;
+
   model = new Post(null, '', '', '', new Date(), null, null, '');
   submitted = false;
 
@@ -35,3 +37,4 @@ export class PostFormComponent implements OnInit {
     this.model = new Post(null, '', '', '', new Date(), null, null, '');
   }
 }
+

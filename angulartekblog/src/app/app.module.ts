@@ -16,6 +16,7 @@ import { OpeningPageComponent } from './components/opening-page/opening-page.com
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { PostFormComponent } from './components/post-form/post-form.component';
 import { PostEditComponent } from './components/post-edit/post-edit.component';
+import {CommentsPostComponent} from './components/comments-post/comments-post.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,9 @@ import { PostEditComponent } from './components/post-edit/post-edit.component';
     OpeningPageComponent,
     NavBarComponent,
     PostFormComponent,
-    PostEditComponent
+    PostEditComponent,
+    PostFormComponent,
+    CommentsPostComponent
   ],
   imports: [
     BrowserModule,

@@ -1,13 +1,15 @@
 <div class="container">
   <h1 style="padding-top: 5%">{{post.postTitle}}</h1><br/>
   <h3>{{post.postSummary}}</h3><br/>
-  <p>By: {{post.creator.name}}</p>
-  <p>Created: {{post.createdDate}}</p>
   <p>{{post.postContent}}</p>
-  <div *ngFor="let tag of post.tagsSet">
+  <p>By: {{post.creator.name}}</p>
+  <p>Posted Date: {{post.createdDate}}</p>
+  <p>Tags:</p>
+  <div *ngFor="let tag of post.tagSet">
     <p>{{tag.tagName}}</p>
   </div>
+  <p>Comments:</p>
   <ul *ngFor="let comment of post.comments">
-    <li>{{comment.comments}}</li>
+    <li> {{comment.comments}}</li>
   </ul>
 </div>
