@@ -1,0 +1,7 @@
+<div class="container">
+  <p *ngFor="let tag of tags">
+    <input (change)="onToggle(tag)" type="checkbox">
+    {{ tag.tagName }}
+    <button (click)="onDelete(tag)" class="del">x</button>
+  </p>
+</div>

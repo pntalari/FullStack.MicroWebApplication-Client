@@ -8,6 +8,7 @@ import {CallbackComponent} from './components/callback/callback.component';
 import {AuthGuard} from './services/auth.guard';
 import {OpeningPageComponent} from './components/opening-page/opening-page.component';
 
+
 const routes: Routes = [
   {path: '', component: OpeningPageComponent},
   {path: 'users', component: UsersComponent, canActivate: [AuthGuard]},
