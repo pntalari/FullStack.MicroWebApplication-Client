@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {UserListService} from '../../services/user-list.service';
 import {Post} from '../../models/Post';
+import {BlogApiService} from '../../services/blog.api.service';
 
 @Component({
   selector: 'app-create-post',
@@ -11,21 +11,21 @@ export class PostFormComponent implements OnInit {
   model = new Post(null, '', '', '', new Date(), null, null, '');
   submitted = false;
   onSubmit() {
-    this.userListService.createPost(this.model);
+    this.blogApiService.createPost(this.model);
     this.submitted = true;
   }
 
   onUpdate() {
-    this.userListService.updatePost(this.model);
+    this.blogApiService.updatePost(this.model);
     this.submitted = true;
   }
 
   onDelete() {
-    this.userListService.deletePost(this.model);
+    this.blogApiService.deletePost(this.model);
     this.submitted = true;
   }
 
-  constructor(private userListService: UserListService) {}
+  constructor(private blogApiService: BlogApiService) {}
 
   ngOnInit() {
   }
