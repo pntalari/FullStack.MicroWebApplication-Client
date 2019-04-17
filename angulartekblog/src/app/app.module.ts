@@ -17,7 +17,7 @@ import { PostFormComponent } from './components/post-form/post-form.component';
 import { TagService} from './services/tag.service';
 import { TagsComponent} from './components/tags/tags.component';
 import { TagFormComponent} from './components/tag-form/tag-form.component';
-
+import {CommentsPostComponent} from './components/comments-post/comments-post.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +29,8 @@ import { TagFormComponent} from './components/tag-form/tag-form.component';
     NavBarComponent,
     PostFormComponent,
     TagsComponent,
-    TagFormComponent
+    TagFormComponent,
+    CommentsPostComponent
   ],
   imports: [
     BrowserModule,
