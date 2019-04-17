@@ -7,35 +7,50 @@ const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
 
-//
-// @Injectable({
-//   providedIn: 'root'
-// })
-// export class CommentsPostService {
-//
-//   constructor(private http: HttpClient)) { }
-// getCommentsByPost(postId: number);{
-//   const url = 'server/users/comments_post/' + postId;
-//   return this.http.get(url);
-//   }
-// createComment(comment: Comments);{
-//   this.http.post('server/users/comment', JSON.stringify(comment), httpOptions)
-//     .subscribe(data => {
-//         console.log(data);
-//       },
-//       err => {
-//         console.log('error occurred creating comment'); });
-// }
-//
-// deleteComment(comment: Comments);{
-//   this.http.delete('/users/deleteComment/' + comment.id, httpOptions)
-//     .subscribe(data => {console.log(data); },
-//       err => { console.log('Error occurred deleting the comment'); });
-// }
-//
-// updatePost(comment: Comments);{
-//   this.http.put('/server/users/updatePost/' + post.id, JSON.stringify(comment), httpOptions)
-//     .subscribe(data => {console.log(data); },
-//       err => { console.log('Error occured updating the comment'); });
-// }
-// }
+
+@Injectable({
+  providedIn: 'root'
+})
+export class CommentsPostService {
+
+  constructor(private http: HttpClient) {
+  }
+
+  getCommentsByPost(postId: number) {
+    const url = 'server/comments/post/' + postId;
+    return this.http.get(url);
+  }
+
+  createComment(comment: Comments) {
+    const token = localStorage.getItem('access_token');
+    this.http.post('server/comment/create/' + localStorage.getItem('id_token'), JSON.stringify(comment),
+      {headers: new HttpHeaders().set('Authorization', 'Bearer ' + token)})
+      .subscribe(data => {
+          console.log(data);
+        },
+        err => {
+          console.log('error occurred creating comment');
+        });
+  }
+
+  deleteComment(comment: Comments) {
+    this.http.delete('server/comment/delete/' + comment.commentId, httpOptions)
+      .subscribe(data => {
+          console.log(data);
+        },
+        err => {
+          console.log('Error occurred deleting the comment');
+        });
+  }
+
+  updateComment(comment: Comments) {
+    this.http.put('server/comment/update/' + comment.commentId, JSON.stringify(comment), httpOptions)
+      .subscribe(data => {
+          console.log(data);
+        },
+        err => {
+          console.log('Error occurred updating the comment');
+        });
+
+  }
+}
