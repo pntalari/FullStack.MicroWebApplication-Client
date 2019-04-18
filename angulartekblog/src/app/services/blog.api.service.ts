@@ -18,8 +18,7 @@ export class BlogApiService {
     console.log(token);
     return this.http.post('server/users/sign-up', localStorage.getItem('id_token'),
       {headers: new HttpHeaders().set('Authorization', 'Bearer ' + token)})
-      .subscribe((data: any) => {localStorage.setItem('userid', data.id);
-                                 localStorage.setItem('username', data.name); console.log(localStorage.getItem('userid')); },
+      .subscribe((data: any) => {localStorage.setItem('userid', data.id); localStorage.setItem('username', data.name); },
         err => {console.log('error occurred'); });
   }
 
@@ -48,7 +47,6 @@ export class BlogApiService {
   }
 
   createPost(post: Post) {
-    console.log(JSON.stringify(post));
     return this.http.post('/server/users/createPost/' + localStorage.getItem('id_token'),
               JSON.stringify(post), httpOptions)
       .subscribe(data => {console.log(data); },
