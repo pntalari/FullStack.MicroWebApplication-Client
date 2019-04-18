@@ -8,11 +8,13 @@ import {AuthService} from '../../services/auth.service';
 })
 export class NavBarComponent implements OnInit {
   private isUserLoggedIn: boolean;
+  private userId;
 
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    setTimeout( () => {this.isUserLoggedIn = this.authService.isAuthenticated(); }, 400);
+    setTimeout( () => {this.isUserLoggedIn = this.authService.isAuthenticated();
+                       this.userId = localStorage.getItem('userid'); }, 400);
   }
   logout() {
     this.authService.logout();
@@ -22,5 +24,4 @@ export class NavBarComponent implements OnInit {
     this.authService.login();
     this.isUserLoggedIn = this.authService.isAuthenticated();
   }
-
 }

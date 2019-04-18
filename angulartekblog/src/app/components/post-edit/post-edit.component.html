@@ -1,7 +1,7 @@
 <div class="container">
-  <div [hidden]="submitted">
-    <h1>Post Form</h1>
-    <form (ngSubmit)="onSubmit()" #postForm="ngForm">
+  <div [hidden]="!creator || deleted">
+    <h1>Edit Post Form</h1>
+    <form (ngSubmit)="onUpdate()" #postForm="ngForm">
       <div class="form-group">
         <label for="title">Title</label>
         <input type="text" class="form-control" id="title"
@@ -28,28 +28,21 @@
       <div class="form-group">
         <label for="content">Content</label>
         <textarea class="form-control" id="content"
-                  [(ngModel)]="model.postContent" name="content"
-                  #name="ngModel" style="padding-bottom: 15%"></textarea>
+               [(ngModel)]="model.postContent" name="content"
+               #name="ngModel" style="padding-bottom: 15%"></textarea>
         <div [hidden]="name.valid || name.pristine"
              class="alert alert-danger">
           Content is required
         </div>
       </div>
-
-      <button type="submit" class="btn btn-success" [disabled]="!postForm.form.valid">Submit</button>
-      <button type="button" class="btn btn-secondary" (click)="newPost(); postForm.reset()">New Post</button>
+      <button type="submit" class="btn btn-success"
+              [disabled]="!postForm.form.valid" (click)="onUpdate()">Update Post</button>
+      <button type="submit" class="btn btn-danger" (click)="onDelete()">Delete Post</button>
     </form>
   </div>
 
-  <div [hidden]="!submitted">
-    <h2>You have submitted your post successfully!</h2><br/>
-      <h1>{{model.postTitle}}</h1><br/>
-      <h3>{{model.postSummary}}</h3><br/>
-      <h4>{{model.postContent}}</h4>
-      <p>Tags:</p>
-      <div *ngFor="let tag of model.tagsSet">
-        <p>{{tag.tagName}}</p>
-      </div>
-    <button class="btn btn-primary" (click)="submitted=false">Edit</button>
+  <div [hidden]="!deleted">Your post has been deleted</div>
+  <div [hidden]="creator">
+    <h1 style="color: crimson">You can't edit someone else's post</h1>
   </div>
 </div>
