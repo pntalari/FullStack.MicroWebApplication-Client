@@ -9,6 +9,7 @@ import {AuthGuard} from './services/auth.guard';
 import {OpeningPageComponent} from './components/opening-page/opening-page.component';
 import {PostEditComponent} from './components/post-edit/post-edit.component';
 
+
 const routes: Routes = [
   {path: '', component: OpeningPageComponent},
   {path: 'users', component: UsersComponent, canActivate: [AuthGuard]},

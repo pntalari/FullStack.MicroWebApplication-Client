@@ -35,10 +35,11 @@
           Content is required
         </div>
       </div>
-      <button type="submit" class="btn btn-success" [disabled]="!postForm.form.valid" (click)="onUpdate()">Update Post</button>
+      <button type="submit" class="btn btn-success"
+              [disabled]="!postForm.form.valid" (click)="onUpdate()">Update Post</button>
+      <button type="submit" class="btn btn-danger" (click)="onDelete()">Delete Post</button>
     </form>
   </div>
-  <button type="submit" class="btn btn-danger" (click)="onDelete()">Delete Post</button>
 
   <div [hidden]="!deleted">Your post has been deleted</div>
   <div [hidden]="creator">
