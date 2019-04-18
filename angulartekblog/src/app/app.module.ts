@@ -18,6 +18,7 @@ import { TagService} from './services/tag.service';
 import { TagsComponent} from './components/tags/tags.component';
 import { TagFormComponent} from './components/tag-form/tag-form.component';
 import {CommentsPostComponent} from './components/comments-post/comments-post.component';
+import { CommentFormComponent } from './components/comment-form/comment-form.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +31,8 @@ import {CommentsPostComponent} from './components/comments-post/comments-post.co
     PostFormComponent,
     TagsComponent,
     TagFormComponent,
-    CommentsPostComponent
+    CommentsPostComponent,
+    CommentFormComponent
   ],
   imports: [
     BrowserModule,

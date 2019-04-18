@@ -1,0 +1,14 @@
+
+<div>
+  <ul *ngFor="let comment of comments">
+    <li> {{comment.comments}}</li>
+  </ul>
+  <button type="button" class="btn btn-success" (click)="onClick()">Add Comment</button>
+  <div [hidden]="!showing" class="form-group">
+    <label for="comment">Enter New Comment</label>
+    <textarea class="form-control" id="comment" rows="3"
+              [(ngModel)]="model.comments" name="comments"
+              #name="ngModel"></textarea>
+    <button style="margin-top: 2%" type="button" class="btn btn-success" (click)="onClickAdd()">Submit Comment</button>
+  </div>
+</div>
