@@ -17,6 +17,7 @@ import { PostFormComponent } from './components/post-form/post-form.component';
 import { TagService} from './services/tag.service';
 import { TagsComponent} from './components/tags/tags.component';
 import { TagFormComponent} from './components/tag-form/tag-form.component';
+import { PostEditComponent } from './components/post-edit/post-edit.component';
 import {CommentsPostComponent} from './components/comments-post/comments-post.component';
 import { CommentFormComponent } from './components/comment-form/comment-form.component';
 @NgModule({
@@ -28,6 +29,8 @@ import { CommentFormComponent } from './components/comment-form/comment-form.com
     CallbackComponent,
     OpeningPageComponent,
     NavBarComponent,
+    PostFormComponent,
+    PostEditComponent,
     PostFormComponent,
     TagsComponent,
     TagFormComponent,

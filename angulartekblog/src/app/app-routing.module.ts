@@ -7,6 +7,7 @@ import {PostFormComponent} from './components/post-form/post-form.component';
 import {CallbackComponent} from './components/callback/callback.component';
 import {AuthGuard} from './services/auth.guard';
 import {OpeningPageComponent} from './components/opening-page/opening-page.component';
+import {PostEditComponent} from './components/post-edit/post-edit.component';
 
 
 const routes: Routes = [
@@ -16,8 +17,7 @@ const routes: Routes = [
   {path: 'post/:id', component: PostComponent},
   {path: 'users/createPost', component: PostFormComponent},
   {path: 'users/posts', component: PostComponent},
-  {path: 'users/updatePost/:id', component: PostFormComponent},
-  {path: 'users/deletePost/:id', component: PostFormComponent},
+  {path: 'users/editPost/:id', component: PostEditComponent },
   {path: 'callback', component: CallbackComponent}
 ];
 

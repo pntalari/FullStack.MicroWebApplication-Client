@@ -1,11 +1,10 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable} from 'rxjs';
 import {Post} from '../models/Post';
 import {Comments} from '../models/Comments';
 
 const httpOptions = {
-  headers: new HttpHeaders({'Content-Type': 'application/json'})
+  headers: new HttpHeaders({'Content-Type': 'application/json'}).set('Authorization', 'Bearer ' + localStorage.getItem('access_token'))
 };
 
 @Injectable({
@@ -14,11 +13,13 @@ const httpOptions = {
 export class BlogApiService {
 
   constructor(private http: HttpClient) { }
+
   signUp() {
     const token = localStorage.getItem('access_token');
+    console.log(token);
     return this.http.post('server/users/sign-up', localStorage.getItem('id_token'),
       {headers: new HttpHeaders().set('Authorization', 'Bearer ' + token)})
-      .subscribe(data => {console.log(data); },
+      .subscribe((data: any) => {localStorage.setItem('userid', data.id); localStorage.setItem('username', data.name); },
         err => {console.log('error occurred'); });
   }
 
@@ -47,16 +48,15 @@ export class BlogApiService {
   }
 
   createPost(post: Post) {
-    console.log(JSON.stringify(post));
     return this.http.post('/server/users/createPost/' + localStorage.getItem('id_token'),
               JSON.stringify(post), httpOptions)
       .subscribe(data => {console.log(data); },
          err => { console.log('error occurred creating post'); });
   }
 
-  deletePost(post: Post) {
-    this.http.delete('/users/deletePost/' + post.postID, {params: {postTitle: post.postTitle, postSummary: post.postSummary,
-      postContent: post.postContent, postComments: post.comments, postTags: post.tagsSet}})
+  deletePost(postID) {
+    this.http.delete('server/users/deletePost/' + postID,
+      {headers: new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('access_token'))})
       .subscribe(data => {console.log(data); },
         err => { console.log('Error occurred deleting the post'); });
   }
