@@ -7,14 +7,16 @@ import {PostFormComponent} from './components/post-form/post-form.component';
 import {CallbackComponent} from './components/callback/callback.component';
 import {AuthGuard} from './services/auth.guard';
 import {OpeningPageComponent} from './components/opening-page/opening-page.component';
+import {PostEditComponent} from './components/post-edit/post-edit.component';
 
 const routes: Routes = [
   {path: '', component: OpeningPageComponent},
   {path: 'users', component: UsersComponent, canActivate: [AuthGuard]},
   {path: 'users/posts/:id', component: UsersPostsComponent },
   {path: 'post/:id', component: PostComponent},
-  {path: 'post/newPost', component: PostFormComponent},
-  {path: 'post/edit/:id', component: PostFormComponent},
+  {path: 'users/createPost', component: PostFormComponent},
+  {path: 'users/posts', component: PostComponent},
+  {path: 'users/editPost/:id', component: PostEditComponent },
   {path: 'callback', component: CallbackComponent}
 ];
 

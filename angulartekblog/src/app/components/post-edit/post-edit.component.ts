@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {BlogApiService} from '../../services/blog.api.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Post} from '../../models/Post';
 
 @Component({
@@ -9,20 +9,34 @@ import {Post} from '../../models/Post';
   styleUrls: ['./post-edit.component.css']
 })
 export class PostEditComponent implements OnInit {
-  private model: Post;
+  private model = new Post(null, null, null, null, null, null, null, null);
   private post;
-  private submitted;
+  private creator = true;
+  private deleted = false;
 
-  constructor(private postId: ActivatedRoute, private blogApiService: BlogApiService) { }
+  constructor(private postId: ActivatedRoute, private blogApiService: BlogApiService, public router: Router) { }
 
   ngOnInit() {
     this.getPost(this.postId);
+    setTimeout(() => {this.checkUser(); }, 400);
+    if (this.creator) {
+      setTimeout(() => {
+        this.loadModel();
+      }, 400);
+    }
+  }
+
+  checkUser() {
+    this.creator = localStorage.getItem('username') === this.post.creator.name;
+  }
+
+  loadModel() {
     this.model = new Post(this.post.postID, this.post.postTitle, this.post.postSummary, this.post.postContent, this.post.createdDate,
       this.post.comments, this.post.tagSet, this.post.creator);
-    this.submitted = false;
   }
 
   getPost(postId) {
+    console.log(postId.params.value.id);
     this.blogApiService.getPostById(postId.params.value.id).subscribe(
       data => { this.post = data; },
       err => console.log(err),
@@ -31,6 +45,10 @@ export class PostEditComponent implements OnInit {
 
   onUpdate() {
     this.blogApiService.updatePost(this.model);
-    this.submitted = true;
+  }
+
+  onDelete() {
+    this.blogApiService.deletePost(this.post.postID);
+    this.deleted = true;
   }
 }

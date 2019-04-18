@@ -15,9 +15,10 @@ export class BlogApiService {
 
   signUp() {
     const token = localStorage.getItem('access_token');
+    console.log(token);
     return this.http.post('server/users/sign-up', localStorage.getItem('id_token'),
       {headers: new HttpHeaders().set('Authorization', 'Bearer ' + token)})
-      .subscribe(data => {console.log(data); },
+      .subscribe((data: any) => {localStorage.setItem('userid', data.id); localStorage.setItem('username', data.name); },
         err => {console.log('error occurred'); });
   }
 
@@ -53,9 +54,9 @@ export class BlogApiService {
          err => { console.log('error occurred creating post'); });
   }
 
-  deletePost(post: Post) {
-    this.http.delete('/users/deletePost/' + post.postID, {params: {postTitle: post.postTitle, postSummary: post.postSummary,
-      postContent: post.postContent, postComments: post.comments, postTags: post.tagsSet}})
+  deletePost(postID) {
+    this.http.delete('server/users/deletePost/' + postID,
+      {headers: new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('access_token'))})
       .subscribe(data => {console.log(data); },
         err => { console.log('Error occurred deleting the post'); });
   }

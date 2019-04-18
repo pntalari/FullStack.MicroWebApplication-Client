@@ -27,9 +27,9 @@
 
       <div class="form-group">
         <label for="content">Content</label>
-        <input type="text" class="form-control" id="content"
-               [(ngModel)]="model.postContent" name="content"
-               #name="ngModel">
+        <textarea class="form-control" id="content"
+                  [(ngModel)]="model.postContent" name="content"
+                  #name="ngModel" style="padding-bottom: 15%"></textarea>
         <div [hidden]="name.valid || name.pristine"
              class="alert alert-danger">
           Content is required
