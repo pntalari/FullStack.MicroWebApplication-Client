@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Post} from '../models/Post';
+import {Comments} from '../models/Comments';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'}).set('Authorization', 'Bearer ' + localStorage.getItem('access_token'))
@@ -66,5 +67,21 @@ export class BlogApiService {
         err => { console.log('Error occured updating the post'); });
   }
 
+  createComment(comment: Comments) {
+    const token = localStorage.getItem('access_token');
+    console.log(JSON.stringify(comment));
+    this.http.post('server/comment/create/' + localStorage.getItem('id_token'), JSON.stringify(comment),
+      {headers: new HttpHeaders({'Content-Type': 'application/json'}).set('Authorization', 'Bearer ' + token)})
+      .subscribe(data => {
+          console.log(data);
+        },
+        err => {
+          console.log('error occurred creating comment');
+        });
+  }
+  getCommentsByPost(postId: number) {
+    const url = 'server/comments/post/' + postId;
+    return this.http.get(url);
+  }
 
 }
