@@ -36,9 +36,14 @@
         </div>
       </div>
       <button type="submit" class="btn btn-success"
-              [disabled]="!postForm.form.valid" (click)="onUpdate()">Update Post</button>
+              [disabled]="!postForm.form.valid" (click)="onUpdate()"
+              [routerLink]="['/users/posts/', userId]">Update Post</button>
       <button type="submit" class="btn btn-danger" (click)="onDelete()">Delete Post</button>
     </form>
+    <div>
+      <app-tag-form></app-tag-form>
+      <app-tags></app-tags>
+    </div>
   </div>
 
   <div [hidden]="!deleted">Your post has been deleted</div>
