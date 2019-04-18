@@ -18,7 +18,8 @@ export class BlogApiService {
     console.log(token);
     return this.http.post('server/users/sign-up', localStorage.getItem('id_token'),
       {headers: new HttpHeaders().set('Authorization', 'Bearer ' + token)})
-      .subscribe((data: any) => {localStorage.setItem('userid', data.id); localStorage.setItem('username', data.name); },
+      .subscribe((data: any) => {localStorage.setItem('userid', data.id);
+                                 localStorage.setItem('username', data.name); console.log(localStorage.getItem('userid')); },
         err => {console.log('error occurred'); });
   }
 
