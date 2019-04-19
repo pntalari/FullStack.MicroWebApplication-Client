@@ -9,7 +9,5 @@
     <p>{{tag.tagName}}</p>
   </div>
   <p>Comments:</p>
-  <ul *ngFor="let comment of post.comments">
-    <li> {{comment.comments}}</li>
-  </ul>
+  <app-comment-form></app-comment-form>
 </div>
