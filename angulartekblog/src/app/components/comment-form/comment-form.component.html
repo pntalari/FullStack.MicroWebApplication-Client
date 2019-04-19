@@ -1,17 +1,24 @@
 
 <div>
-  <div *ngFor="let comment of comments">
-    <div>{{comment.comments}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" class="btn btn-sm btn-dark btn"><i class="fa fa-edit"></i></button> &nbsp;
-      <button type="button" class="btn btn-sm btn-danger btn"><i class="fa fa-trash"></i></button>
+  <div class="list-group" *ngFor="let comment of comments">
+    <span style="font-size: 1.5vmin">{{comment.user.name}}:</span>
+    <div>
+      <i class="fa fa-edit" (click)="onUpdate()"></i>
+      <i style="color: crimson" class="fa fa-trash" (click)="onDelete(comment.commentId)"></i>
+    </div>
+    <div class="list-group-item">
+      {{comment.comments}}
+      <!--<button type="button" class="btn btn-sm btn-dark btn"><i class="fa fa-edit"></i></button> &nbsp;-->
+      <!--<button type="button" class="btn btn-sm btn-danger btn"><i class="fa fa-trash"></i></button>-->
     </div>
   </div>
-  <button type="button" class="btn btn-success" (click)="onClick()">Add Comment</button>
+<!--  <ul *ngFor="let comment of comments">-->
+<!--    <li> {{comment.comments}}</li>-->
+<!--  </ul>-->
+  <button type="button" class="btn btn-success btn-sm" (click)="onClick()">Add Comment</button>
   <div [hidden]="!showing" class="form-group">
     <label for="comment">Enter New Comment</label>
-    <textarea class="form-control" id="comment" rows="3"
-              [(ngModel)]="model.comments" name="comments"
-              #name="ngModel"></textarea>
+    <textarea class="form-control" id="comment" rows="3" [(ngModel)]="model.comments" name="comments"></textarea>
     <button style="margin-top: 2%" type="button" class="btn btn-success" (click)="onClickAdd()">Submit Comment</button>
   </div>
 </div>

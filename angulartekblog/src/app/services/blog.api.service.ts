@@ -16,7 +16,6 @@ export class BlogApiService {
 
   signUp() {
     const token = localStorage.getItem('access_token');
-    console.log(token);
     return this.http.post('server/users/sign-up', localStorage.getItem('id_token'),
       {headers: new HttpHeaders().set('Authorization', 'Bearer ' + token)})
       .subscribe((data: any) => {localStorage.setItem('userid', data.id); localStorage.setItem('username', data.name); },
@@ -34,7 +33,7 @@ export class BlogApiService {
   }
 
   getPosts() {
-    return this.http.get('server/users/posts');
+    return this.http.get('server/post');
   }
 
   getPostsByUser(userId: string) {
@@ -47,9 +46,13 @@ export class BlogApiService {
     return this.http.get(url);
   }
 
+  getPostTags(postId: string) {
+    const url = 'server/post/tags/' + postId;
+    return this.http.get(url);
+  }
+
   createPost(post: Post) {
-    return this.http.post('/server/users/createPost/' + localStorage.getItem('id_token'),
-              JSON.stringify(post), httpOptions)
+    return this.http.post('server/users/createPost/' + localStorage.getItem('id_token'), JSON.stringify(post), httpOptions)
       .subscribe(data => {console.log(data); },
          err => { console.log('error occurred creating post'); });
   }
@@ -62,7 +65,7 @@ export class BlogApiService {
   }
 
   updatePost(post: Post) {
-    this.http.put('/server/users/updatePost/' + post.postID, JSON.stringify(post), httpOptions)
+    this.http.put('server/users/updatePost/' + post.postID, JSON.stringify(post), httpOptions)
       .subscribe(data => {console.log(data); },
         err => { console.log('Error occured updating the post'); });
   }
@@ -84,8 +87,8 @@ export class BlogApiService {
     return this.http.get(url);
   }
 
-  deleteComment(comment: Comments) {
-    this.http.delete('server/comment/delete/' + comment.commentId, httpOptions)
+  deleteComment(commentId) {
+    this.http.delete('server/comment/delete/' + commentId, httpOptions)
       .subscribe(data => {
           console.log(data);
         },
