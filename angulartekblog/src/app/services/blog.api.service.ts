@@ -15,7 +15,6 @@ export class BlogApiService {
 
   signUp() {
     const token = localStorage.getItem('access_token');
-    console.log(token);
     return this.http.post('server/users/sign-up', localStorage.getItem('id_token'),
       {headers: new HttpHeaders().set('Authorization', 'Bearer ' + token)})
       .subscribe((data: any) => {localStorage.setItem('userid', data.id); localStorage.setItem('username', data.name); },
