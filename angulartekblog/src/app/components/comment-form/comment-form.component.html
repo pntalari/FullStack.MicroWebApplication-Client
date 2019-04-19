@@ -1,8 +1,11 @@
 
 <div>
-  <ul *ngFor="let comment of comments">
-    <li> {{comment.comments}}</li>
-  </ul>
+  <div *ngFor="let comment of comments">
+    <div>{{comment.comments}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="button" class="btn btn-sm btn-dark btn"><i class="fa fa-edit"></i></button> &nbsp;
+      <button type="button" class="btn btn-sm btn-danger btn"><i class="fa fa-trash"></i></button>
+    </div>
+  </div>
   <button type="button" class="btn btn-success" (click)="onClick()">Add Comment</button>
   <div [hidden]="!showing" class="form-group">
     <label for="comment">Enter New Comment</label>

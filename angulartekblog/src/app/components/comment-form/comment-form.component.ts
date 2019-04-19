@@ -6,6 +6,7 @@ import {Tags} from '../../models/Tag';
 import {TagService} from '../../services/tag.service';
 import {ActivatedRoute} from '@angular/router';
 import {BlogApiService} from '../../services/blog.api.service';
+import {CommentEditComponent} from '../comment-edit/comment-edit.component';
 
 @Component({
   selector: 'app-comment-form',
@@ -18,7 +19,8 @@ export class CommentFormComponent implements OnInit {
   public comments = [];
   model = new Comments(null, '', new Date(), null, null);
   submitted = false;
-  constructor(private postId: ActivatedRoute, private blogApiService: BlogApiService) { }
+  constructor(private postId: ActivatedRoute, private blogApiService: BlogApiService,
+              private commentEditComponent: CommentEditComponent) { }
 
   ngOnInit() {
    this.setPost(this.postId);
@@ -42,5 +44,14 @@ export class CommentFormComponent implements OnInit {
     this.model = new Comments(null, '', new Date(), null, null);
     this.submitted = true;
   }
+  // onUpdate() {
+  //   console.log('I was called and therefore am not the problem');
+  //   this.blogApiService.updateComment(this.model);
+  // }
+  //
+  // onDelete() {
+  //   this.blogApiService.deleteComment(this.post.postID);
+  //   // this.deleted = true;
+  // }
 
 }
