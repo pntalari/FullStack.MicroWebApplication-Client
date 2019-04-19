@@ -46,6 +46,11 @@ export class BlogApiService {
     return this.http.get(url);
   }
 
+  getPostTags(postId: string) {
+    const url = 'server/post/tags/' + postId;
+    return this.http.get(url);
+  }
+
   createPost(post: Post) {
     return this.http.post('server/users/createPost/' + localStorage.getItem('id_token'), JSON.stringify(post), httpOptions)
       .subscribe(data => {console.log(data); },
