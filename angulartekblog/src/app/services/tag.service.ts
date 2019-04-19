@@ -41,7 +41,7 @@ export class TagService {
   }
 
   findFilteredPostsByTag(tagNames) {
-    const url = 'server//tags/filteredPosts/' + tagNames;
+    const url = 'server/tags/filteredPosts/' + tagNames;
     return this.http.get(url).subscribe(data => {console.log(data); },
       err => console.log('error'));
   }

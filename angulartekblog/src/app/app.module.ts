@@ -20,6 +20,10 @@ import { TagFormComponent} from './components/tag-form/tag-form.component';
 import { PostEditComponent } from './components/post-edit/post-edit.component';
 import {CommentsPostComponent} from './components/comments-post/comments-post.component';
 import { CommentFormComponent } from './components/comment-form/comment-form.component';
+import {MatButtonModule, MatCheckboxModule, MatIconModule, MatNavList, MatSidenavModule, MatToolbarModule} from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +45,13 @@ import { CommentFormComponent } from './components/comment-form/comment-form.com
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    MatSidenavModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatCheckboxModule
   ],
   providers: [BlogApiService, AuthService, AuthGuard, TagService],
   bootstrap: [AppComponent]

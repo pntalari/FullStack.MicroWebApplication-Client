@@ -2,8 +2,8 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {TagService} from '../../services/tag.service';
 import {Tags} from '../../models/Tag';
 import {Post} from '../../models/Post';
-import {forEach} from '@angular/router/src/utils/collection';
 import {BlogApiService} from '../../services/blog.api.service';
+
 
 @Component({
   selector: 'app-tags',
@@ -14,6 +14,8 @@ export class TagsComponent implements OnInit {
   public tags;
   public filteredTagList: string[] = [];
   public filteredPost;
+  public showing = false;
+
 
   constructor(private tagService: TagService, private blogApiService: BlogApiService) { }
   @Output() deleteTag: EventEmitter<Tags> = new EventEmitter();
@@ -38,13 +40,14 @@ export class TagsComponent implements OnInit {
       this.filteredPost = this.tagService.findFilteredPostsByTag(this.filteredTagList);
     } else if (this.filteredTagList.indexOf(tagName) !== -1 && this.filteredTagList.length === 1) {
       this.filteredTagList = [];
-      this.filteredPost = this.nothingToggled();
+      this.filteredPost = this.nothingToggled()
     } else {
       this.filteredTagList.splice(this.filteredTagList.indexOf(tagName), 1);
       this.filteredPost = [];
       this.filteredPost = this.tagService.findFilteredPostsByTag(this.filteredTagList);
     }
   }
+
   onDelete(tag: Tags) {
     this.deleteTag.emit(tag);
     // Delete from UI
@@ -53,10 +56,11 @@ export class TagsComponent implements OnInit {
     this.tagService.deleteTags(tag.tagName);
     alert('Tag is deleted');
   }
+
   nothingToggled() {
     // const allTags = this.tags;
     // const allTagNames = [];
-    // const allPost = [];
+    const allPost = [];
     // allTags.forEach(tag => {
     //   allTagNames.push(tag.tagName);
     // });
@@ -64,4 +68,9 @@ export class TagsComponent implements OnInit {
     //   this.tagService.findPostsByTag(tagNames).subscribe(data => this.filteredPost = data);
     // }, err => console.log(err));
   }
+
+  changeShowing() {
+    this.showing = !this.showing;
+  }
+
 }
