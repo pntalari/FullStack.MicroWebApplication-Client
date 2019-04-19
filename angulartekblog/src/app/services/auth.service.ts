@@ -15,7 +15,7 @@ export class AuthService {
     scope: 'profile openid view:user view:users'
   });
 
-  constructor(public router: Router, private userListService: BlogApiService ) {}
+  constructor(public router: Router, private blogApiService: BlogApiService ) {}
 
   public login(): void {
     this.auth0.authorize();
@@ -39,7 +39,7 @@ export class AuthService {
     const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
-    this.userListService.signUp();
+    this.blogApiService.signUp();
     localStorage.setItem('expires_at', expiresAt);
   }
 
@@ -48,6 +48,8 @@ export class AuthService {
     localStorage.removeItem('access_token');
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
+    localStorage.removeItem('userid');
+    localStorage.removeItem('username');
     // Go back to the home route
     this.router.navigate(['/']);
   }
