@@ -25,7 +25,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 import { CommentEditComponent } from './components/comment-edit/comment-edit.component';
-// import { FontAwesomeModule } from '@fontawesome/angular-fontawesome';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,8 +55,7 @@ import { CommentEditComponent } from './components/comment-edit/comment-edit.com
     MatIconModule,
     MatToolbarModule,
     MatCheckboxModule,
-    FormsModule,
-    // FontAwesomeModule
+    FormsModule
   ],
   providers: [BlogApiService, AuthService, AuthGuard, TagService],
   bootstrap: [AppComponent]
