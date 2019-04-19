@@ -9,11 +9,20 @@ import {BlogApiService} from '../../services/blog.api.service';
 })
 export class UsersPostsComponent implements OnInit {
   public posts;
+  public user;
 
   constructor(private userId: ActivatedRoute, private userListService: BlogApiService) { }
 
   ngOnInit() {
     this.getPosts(this.userId);
+    this.getUser(this.userId);
+  }
+
+  getUser(userId) {
+    this.userListService.getUserById(userId.params.value.id).subscribe(
+      data => {this.user = data; },
+      err => console.log(err)
+    );
   }
 
   getPosts(userId) {

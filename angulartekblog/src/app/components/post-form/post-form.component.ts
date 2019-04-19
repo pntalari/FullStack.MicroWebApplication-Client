@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Post} from '../../models/Post';
 import {BlogApiService} from '../../services/blog.api.service';
+import {TagService} from '../../services/tag.service';
 
 @Component({
   selector: 'app-create-post',
@@ -10,12 +11,20 @@ import {BlogApiService} from '../../services/blog.api.service';
 export class PostFormComponent implements OnInit {
  // @Input() model: Post;
 
-  model = new Post(null, '', '', '', new Date(), null, null, '');
-  submitted = false;
+  public model = new Post(null, '', '', '', new Date(), null, null, '');
+  public submitted = false;
+  public tags;
 
-  constructor(private blogApiService: BlogApiService) {}
+  constructor(private blogApiService: BlogApiService, private tagService: TagService) {}
 
   ngOnInit() {
+    this.getTags();
+  }
+
+  getTags(){
+    this.tagService.findAllTags().subscribe(
+      data => { this.tags = data; },
+      err => console.log(err));
   }
 
   onSubmit() {

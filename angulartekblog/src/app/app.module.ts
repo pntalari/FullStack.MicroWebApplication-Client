@@ -20,6 +20,8 @@ import { TagFormComponent} from './components/tag-form/tag-form.component';
 import { PostEditComponent } from './components/post-edit/post-edit.component';
 import {CommentsPostComponent} from './components/comments-post/comments-post.component';
 import { CommentFormComponent } from './components/comment-form/comment-form.component';
+import { PostListComponent } from './components/post-list/post-list.component';
+import { YourPostsComponent } from './components/your-posts/your-posts.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +37,9 @@ import { CommentFormComponent } from './components/comment-form/comment-form.com
     TagsComponent,
     TagFormComponent,
     CommentsPostComponent,
-    CommentFormComponent
+    CommentFormComponent,
+    PostListComponent,
+    YourPostsComponent
   ],
   imports: [
     BrowserModule,

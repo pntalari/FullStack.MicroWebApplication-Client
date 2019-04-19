@@ -29,7 +29,7 @@ export class BlogApiService {
   }
 
   getUserById(userId: string) {
-    return this.http.get('server/users/' + userId);
+    return this.http.get('server/users/id/' + userId);
   }
 
   getPosts() {
