@@ -2,8 +2,14 @@
 <div>
   <div class="list-group" *ngFor="let comment of comments">
     <span style="font-size: 1.5vmin">{{comment.user.name}}:</span>
+    <div>
+      <i class="fa fa-edit" (click)="onUpdate()"></i>
+      <i style="color: crimson" class="fa fa-trash" (click)="onDelete(comment.commentId)"></i>
+    </div>
     <div class="list-group-item">
       {{comment.comments}}
+      <!--<button type="button" class="btn btn-sm btn-dark btn"><i class="fa fa-edit"></i></button> &nbsp;-->
+      <!--<button type="button" class="btn btn-sm btn-danger btn"><i class="fa fa-trash"></i></button>-->
     </div>
   </div>
 <!--  <ul *ngFor="let comment of comments">-->

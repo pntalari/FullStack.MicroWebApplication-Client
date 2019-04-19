@@ -20,6 +20,8 @@ import { TagFormComponent} from './components/tag-form/tag-form.component';
 import { PostEditComponent } from './components/post-edit/post-edit.component';
 import {CommentsPostComponent} from './components/comments-post/comments-post.component';
 import { CommentFormComponent } from './components/comment-form/comment-form.component';
+import { CommentEditComponent } from './components/comment-edit/comment-edit.component';
+// import { FontAwesomeModule } from '@fontawesome/angular-fontawesome';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,13 +37,15 @@ import { CommentFormComponent } from './components/comment-form/comment-form.com
     TagsComponent,
     TagFormComponent,
     CommentsPostComponent,
-    CommentFormComponent
+    CommentFormComponent,
+    CommentEditComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    // FontAwesomeModule
   ],
   providers: [BlogApiService, AuthService, AuthGuard, TagService],
   bootstrap: [AppComponent]
