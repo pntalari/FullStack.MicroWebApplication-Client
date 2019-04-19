@@ -9,20 +9,11 @@ import {BlogApiService} from '../../services/blog.api.service';
 })
 export class PostComponent implements OnInit {
   public post;
-  public showing: boolean;
 
   constructor(private postId: ActivatedRoute, private blogApiService: BlogApiService) { }
 
   ngOnInit() {
     this.getPost(this.postId);
-  }
-
-  consoleLog() {
-    console.log('Hi there!');
-  }
-
-  setFalse() {
-    this.showing = !this.showing;
   }
 
   getPost(postId) {
