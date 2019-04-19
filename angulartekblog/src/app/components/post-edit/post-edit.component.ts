@@ -13,6 +13,7 @@ export class PostEditComponent implements OnInit {
   private post;
   private creator = true;
   private deleted = false;
+  private userId;
 
   constructor(private postId: ActivatedRoute, private blogApiService: BlogApiService, public router: Router) { }
 
@@ -24,6 +25,7 @@ export class PostEditComponent implements OnInit {
         this.loadModel();
       }, 400);
     }
+    this.userId = localStorage.getItem('userid');
   }
 
   checkUser() {

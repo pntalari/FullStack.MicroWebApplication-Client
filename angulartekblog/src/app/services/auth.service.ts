@@ -38,6 +38,7 @@ export class AuthService {
     // Set the time that the access token will expire at
     const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
     localStorage.setItem('access_token', authResult.accessToken);
+    // console.log(authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
     this.blogApiService.signUp();
     localStorage.setItem('expires_at', expiresAt);

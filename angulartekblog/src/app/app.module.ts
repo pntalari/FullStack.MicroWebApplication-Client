@@ -24,6 +24,8 @@ import {MatButtonModule, MatCheckboxModule, MatIconModule, MatNavList, MatSidena
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
+import { CommentEditComponent } from './components/comment-edit/comment-edit.component';
+// import { FontAwesomeModule } from '@fontawesome/angular-fontawesome';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +41,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     TagsComponent,
     TagFormComponent,
     CommentsPostComponent,
-    CommentFormComponent
+    CommentFormComponent,
+    CommentEditComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +54,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     MatButtonModule,
     MatIconModule,
     MatToolbarModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    FormsModule,
+    // FontAwesomeModule
   ],
   providers: [BlogApiService, AuthService, AuthGuard, TagService],
   bootstrap: [AppComponent]
