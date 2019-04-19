@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {CommentsPostService} from '../../services/comments-post.service';
+import {BlogApiService} from '../../services/blog.api.service';
+
 @Component({
   selector: 'app-comments-post',
   templateUrl: './comments-post.component.html',
