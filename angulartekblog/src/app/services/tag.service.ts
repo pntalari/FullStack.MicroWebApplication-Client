@@ -3,6 +3,7 @@ import { Observable, of, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError, tap, map } from 'rxjs/operators';
 import { Tags } from 'src/app/models/Tag';
+import { Post} from '../models/Post';
 
 
 const httpOptions = {
@@ -37,6 +38,12 @@ export class TagService {
   findPostsByTag(tagName: string) {
     const url = 'server/tags/posts/' + tagName;
     return this.http.get(url);
+  }
+
+  findFilteredPostsByTag(tagNames) {
+    const url = 'server/tags/filteredPosts/' + tagNames;
+    return this.http.get(url).subscribe(data => {console.log(data); },
+      err => console.log('error'));
   }
 
   createTags(tag: Tags) {
