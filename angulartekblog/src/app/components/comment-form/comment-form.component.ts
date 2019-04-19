@@ -16,8 +16,7 @@ export class CommentFormComponent implements OnInit {
   public post;
   public showing = false;
   public comments = [];
-  model = new Comments(null, '', new Date(), null, null);
-  submitted = false;
+  model = new Comments(null, '', new Date(), null, {id: null, name: localStorage.getItem('username')});
   constructor(private postId: ActivatedRoute, private blogApiService: BlogApiService) { }
 
   ngOnInit() {
@@ -39,8 +38,9 @@ export class CommentFormComponent implements OnInit {
   onClickAdd() {
     this.blogApiService.createComment(this.model);
     this.comments.push(this.model);
-    this.model = new Comments(null, '', new Date(), null, null);
-    this.submitted = true;
+    console.log(this.model);
+    this.model = new Comments(null, '', new Date(), null, {id: null, name: localStorage.getItem('username')});
+    this.showing = false;
   }
 
 }
