@@ -1,14 +1,8 @@
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
 
-.wrapper {
-  display: flex;
-  width: 100%;
-  align-items: stretch;
-}
-
-
 #sidebar {
+  top: 2%; position: sticky; min-height: 100%; z-index: 1;
   background: #5CCC5E;
   color: #fff;
   transition: all 0.3s;
@@ -78,23 +72,6 @@ ul ul a {
 
 a[data-toggle="collapse"] {
   position: relative;
-}
-
-.dropdown-toggle::after {
-  display: block;
-  position: absolute;
-  top: 50%;
-  right: 20px;
-  transform: translateY(-50%);
-}
-
-@media (max-width: 768px) {
-  #sidebar {
-    margin-left: -250px;
-  }
-  #sidebar.active {
-    margin-left: 0;
-  }
 }
 
 ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {

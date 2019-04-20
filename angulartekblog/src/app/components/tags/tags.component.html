@@ -3,21 +3,18 @@
 <!-- (need to install npm install --save @angular/material @angular/cdk @angular/animations -->
 <!--<button (click)="onDelete(tag)" class="del">x</button>-->
 
-<button class="btn-primary" style="top: 0; width: 10%; position: sticky; float: left; z-index: 3;"  (click)="changeShowing()">Tags</button>
+<button class="btn-primary" style="top: 0; width: 25%; position: sticky; float: left; z-index: 3;"  (click)="changeShowing()">Tags</button>
 
-<div class="wrapper" style="top: 0; position: sticky; min-height: 100%; z-index: 1;">
   <!-- Sidebar -->
-  <nav id="sidebar" [hidden]="!showing">
-    <div class="sidebar-header">
-    </div>
-    <div *ngFor="let tag of tags">
-    <mat-checkbox (click)="onToggle(tag.tagName)">
-      {{tag.tagName}}
-    </mat-checkbox>
-    </div>
-
-  </nav>
-</div>
+<nav id="sidebar" [hidden]="!showing">
+  <div class="sidebar-header">
+  </div>
+  <div *ngFor="let tag of tags">
+  <mat-checkbox (click)="onToggle(tag.tagName)">
+    {{tag.tagName}}
+  </mat-checkbox>
+  </div>
+</nav>
 
 
 

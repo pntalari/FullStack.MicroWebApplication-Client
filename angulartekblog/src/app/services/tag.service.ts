@@ -30,19 +30,9 @@ export class TagService {
     return this.http.get('server/tags');
   }
 
-  findTagById(id: number) {
-    return this.http.get('server/tags/${id}');
-  }
-
-  findPostsByTag(tagName: string) {
-    const url = 'server/tags/posts/' + tagName;
-    return this.http.get(url);
-  }
-
   findFilteredPostsByTag(tagNames: string[]) {
     const url = 'server/tags/filteredPosts/' + tagNames;
-    return this.http.get(url).subscribe(data => {console.log(data); },
-      err => console.log('error'));
+    return this.http.get(url);
   }
 
   createTags(tag: Tags) {
