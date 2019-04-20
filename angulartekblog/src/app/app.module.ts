@@ -52,15 +52,14 @@ import { NgSelectModule } from '@ng-select/ng-select';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule,
     MatSidenavModule,
     BrowserAnimationsModule,
     MatButtonModule,
     MatIconModule,
     MatToolbarModule,
     MatCheckboxModule,
-    FormsModule,
-    NgSelectModule
+    NgSelectModule,
+    FormsModule
   ],
   providers: [BlogApiService, AuthService, AuthGuard, TagService],
   bootstrap: [AppComponent]
