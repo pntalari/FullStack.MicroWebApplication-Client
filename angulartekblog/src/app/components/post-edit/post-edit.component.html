@@ -1,10 +1,10 @@
 
 
-<button class="btn btn-block btn-primary" style="margin-top: 2%; margin-bottom: 2%" [routerLink]="['/post/', model.postID]">View Post</button>
+<button class="btn btn-block btn-success" style="margin-top: 2%; margin-bottom: 2%" [routerLink]="['/post/', model.postID]">View Post</button>
 
-<div class="container">
+<div style="margin-bottom: 2%" class="container">
   <div [hidden]="!creator">
-    <h1>Edit Post Form</h1>
+    <h1>Edit Post</h1>
     <form (ngSubmit)="onUpdate()" #postForm="ngForm">
       <div class="form-group">
         <label for="title">Title</label>

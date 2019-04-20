@@ -14,7 +14,6 @@ export class PostEditComponent implements OnInit {
   private creator = true;
   public tags = [{tagName: 'testing'}];
 
-
   constructor(private postId: ActivatedRoute, private blogApiService: BlogApiService,
               public router: Router, private tagService: TagService) { }
 

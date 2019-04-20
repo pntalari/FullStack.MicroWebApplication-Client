@@ -22,7 +22,7 @@ export class PostComponent implements OnInit {
 
   getTags(postId) {
     this.blogApiService.getPostTags(postId.params.value.id).subscribe(
-      data => { this.tags = data; console.log(data); },
+      data => { this.tags = data; },
       err => console.log(err),
     );
   }
