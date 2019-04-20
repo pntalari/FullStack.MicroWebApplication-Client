@@ -29,7 +29,7 @@ export class BlogApiService {
   }
 
   getUserById(userId: string) {
-    return this.http.get('server/users/' + userId);
+    return this.http.get('server/users/id/' + userId);
   }
 
   getPosts() {
@@ -108,4 +108,8 @@ export class BlogApiService {
 
   }
 
+  getCommentsByUser(userId) {
+    const url = 'server/users/comments/' + userId;
+    return this.http.get(url);
+  }
 }

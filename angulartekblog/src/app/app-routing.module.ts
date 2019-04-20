@@ -8,6 +8,7 @@ import {CallbackComponent} from './components/callback/callback.component';
 import {AuthGuard} from './services/auth.guard';
 import {OpeningPageComponent} from './components/opening-page/opening-page.component';
 import {PostEditComponent} from './components/post-edit/post-edit.component';
+import {YourPostsComponent} from './components/your-posts/your-posts.component';
 
 
 const routes: Routes = [
@@ -18,7 +19,8 @@ const routes: Routes = [
   {path: 'users/createPost', component: PostFormComponent},
   {path: 'users/posts', component: PostComponent},
   {path: 'users/editPost/:id', component: PostEditComponent },
-  {path: 'callback', component: CallbackComponent}
+  {path: 'callback', component: CallbackComponent},
+  {path: 'posts', component: YourPostsComponent}
 ];
 
 @NgModule({

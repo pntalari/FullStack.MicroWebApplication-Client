@@ -1,6 +1,10 @@
-<div class="container">
-  <div [hidden]="!creator || deleted">
-    <h1>Edit Post Form</h1>
+
+
+<button class="btn btn-block btn-success" style="margin-top: 2%; margin-bottom: 2%" [routerLink]="['/post/', model.postID]">View Post</button>
+
+<div style="margin-bottom: 2%" class="container">
+  <div [hidden]="!creator">
+    <h1>Edit Post</h1>
     <form (ngSubmit)="onUpdate()" #postForm="ngForm">
       <div class="form-group">
         <label for="title">Title</label>
@@ -28,26 +32,34 @@
       <div class="form-group">
         <label for="content">Content</label>
         <textarea class="form-control" id="content"
-               [(ngModel)]="model.postContent" name="content"
-               #name="ngModel" style="padding-bottom: 15%"></textarea>
+                  [(ngModel)]="model.postContent" name="content"
+                  #name="ngModel" style="padding-bottom: 15%"></textarea>
         <div [hidden]="name.valid || name.pristine"
              class="alert alert-danger">
           Content is required
         </div>
       </div>
-      <button type="submit" class="btn btn-success"
-              [disabled]="!postForm.form.valid" (click)="onUpdate()"
-              [routerLink]="['/users/posts/', userId]">Update Post</button>
-      <button type="submit" class="btn btn-danger" (click)="onDelete()">Delete Post</button>
+
+      <ng-select
+        [items]="tags"
+        [multiple]="true"
+        [closeOnSelect]="false"
+        [searchable]="false"
+        bindLabel="tagName"
+        placeholder="Select tags"
+        [(ngModel)]="model.tagsSet" name="tags"
+        style="margin-bottom: 3%">
+      </ng-select>
+
+      <button type="submit" class="btn btn-success" [disabled]="!postForm.form.valid">Submit</button>
+      <button class="btn btn-danger" (click)="onDelete()">Delete</button>
+
     </form>
-    <div>
-      <app-tag-form></app-tag-form>
-      <app-tags></app-tags>
-    </div>
   </div>
 
-  <div [hidden]="!deleted">Your post has been deleted</div>
   <div [hidden]="creator">
     <h1 style="color: crimson">You can't edit someone else's post</h1>
   </div>
 </div>
+
+

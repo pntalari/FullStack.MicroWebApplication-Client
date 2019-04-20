@@ -1,0 +1,9 @@
+<div class="container" *ngFor="let post of posts">
+  <div class="card border-success mb-3 clickable" [routerLink]="['/post/', post.postID]" style="max-width: 30vm;">
+    <div class="card-header" style="font-size: 3vmin">{{post.postTitle}}</div>
+    <div class="card-body">
+      <h4 class="card-title">{{post.postSummary}}</h4>
+      <p class="card-text">{{post.postContent.substring(0, 500) + '...'}}</p>
+    </div>
+  </div>
+</div>

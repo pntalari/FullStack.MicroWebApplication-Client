@@ -1,15 +1,13 @@
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
 
-.wrapper {
-  display: flex;
-  width: 100%;
-  align-items: stretch;
-}
-
 #sidebar {
-  min-width: 250px;
-  max-width: 250px;
+  top: 2%; position: sticky; min-height: 100%; z-index: 1;
+  background: #5CCC5E;
+  color: #fff;
+  transition: all 0.3s;
+  width: 25%;
+  padding: 2% 2% 2% 5%;
 }
 
 #sidebar.active {
@@ -36,12 +34,6 @@ a, a:hover, a:focus {
   transition: all 0.3s;
 }
 
-#sidebar {
-  /* don't forget to add all the previously mentioned styles here too */
-  background: #5CCC5E;
-  color: #fff;
-  transition: all 0.3s;
-}
 
 #sidebar .sidebar-header {
   padding: 20px;
@@ -82,23 +74,6 @@ a[data-toggle="collapse"] {
   position: relative;
 }
 
-.dropdown-toggle::after {
-  display: block;
-  position: absolute;
-  top: 50%;
-  right: 20px;
-  transform: translateY(-50%);
-}
-
-@media (max-width: 768px) {
-  #sidebar {
-    margin-left: -250px;
-  }
-  #sidebar.active {
-    margin-left: 0;
-  }
-}
-
 ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
   background-color: #0392B5 !important;
 }
@@ -106,5 +81,7 @@ a[data-toggle="collapse"] {
 ::ng-deep .mat-ripple-element {
   background: #0392B5 !important;
 }
+
+
 
 

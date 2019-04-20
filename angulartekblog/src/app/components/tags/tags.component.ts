@@ -1,9 +1,6 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {TagService} from '../../services/tag.service';
 import {Tags} from '../../models/Tag';
-import {Post} from '../../models/Post';
-import {BlogApiService} from '../../services/blog.api.service';
-
 
 @Component({
   selector: 'app-tags',
@@ -13,11 +10,12 @@ import {BlogApiService} from '../../services/blog.api.service';
 export class TagsComponent implements OnInit {
   public tags;
   public filteredTagList: string[] = [];
-  public filteredPost;
+  @Input() public totalPosts: any[];
+  public filteredPost: any[];
   public showing = false;
+  @Output() filter = new EventEmitter<any>();
 
-
-  constructor(private tagService: TagService, private blogApiService: BlogApiService) { }
+  constructor(private tagService: TagService) { }
   @Output() deleteTag: EventEmitter<Tags> = new EventEmitter();
 
 
@@ -37,15 +35,18 @@ export class TagsComponent implements OnInit {
   onToggle(tagName: string) {
     if (this.filteredTagList.indexOf(tagName) === -1) {
       this.filteredTagList.push(tagName);
-      this.filteredPost = this.tagService.findFilteredPostsByTag(this.filteredTagList);
+      this.tagService.findFilteredPostsByTag(this.filteredTagList).subscribe(
+        (data: any[]) => { this.filteredPost = data; }
+      );
     } else if (this.filteredTagList.indexOf(tagName) !== -1 && this.filteredTagList.length === 1) {
-      this.filteredTagList = [];
-      this.filteredPost = this.nothingToggled()
+      this.nothingToggled();
     } else {
       this.filteredTagList.splice(this.filteredTagList.indexOf(tagName), 1);
-      this.filteredPost = [];
-      this.filteredPost = this.tagService.findFilteredPostsByTag(this.filteredTagList);
+      this.tagService.findFilteredPostsByTag(this.filteredTagList).subscribe(
+        (data: any[]) => { this.filteredPost = data; }
+      );
     }
+    setTimeout(() => {this.filter.emit(this.filteredPost); }, 400);
   }
 
   onDelete(tag: Tags) {
@@ -58,15 +59,7 @@ export class TagsComponent implements OnInit {
   }
 
   nothingToggled() {
-    // const allTags = this.tags;
-    // const allTagNames = [];
-    const allPost = [];
-    // allTags.forEach(tag => {
-    //   allTagNames.push(tag.tagName);
-    // });
-    // allTagNames.forEach(tagNames => {
-    //   this.tagService.findPostsByTag(tagNames).subscribe(data => this.filteredPost = data);
-    // }, err => console.log(err));
+    this.filteredPost = this.totalPosts;
   }
 
   changeShowing() {

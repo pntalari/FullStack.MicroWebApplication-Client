@@ -9,6 +9,6 @@ export class Post {
     public createdDate: Date,
     public comments: Comments[],
     public tagsSet: any[],
-    public creator: string
+    public creator: {}
   ) {}
 }

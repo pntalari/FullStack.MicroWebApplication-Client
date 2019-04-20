@@ -38,7 +38,6 @@ export class CommentFormComponent implements OnInit {
   onClickAdd() {
     this.blogApiService.createComment(this.model);
     this.comments.push(this.model);
-    console.log(this.model);
     this.model = new Comments(null, '', new Date(), null, {id: null, name: localStorage.getItem('username')});
     this.showing = false;
   }

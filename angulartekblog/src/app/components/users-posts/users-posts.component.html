@@ -1,12 +1,10 @@
 <div>
-  <h1 style="margin-bottom:4vm; padding: 2% 2% 2% 6%;">Your Posts:</h1>
-  <div class="container" *ngFor="let post of posts">
-    <div class="card border-success mb-3 clickable" [routerLink]="['/post/', post.postID]" style="max-width: 30vm;">
-      <div class="card-header" style="font-size: 3vmin">{{post.postTitle}}</div>
-      <div class="card-body">
-        <h4 class="card-title">{{post.postSummary}}</h4>
-        <p class="card-text">{{post.postContent.substring(0, 500) + '...'}}</p>
-      </div>
+  <h1 style="margin-bottom:4vm; padding: 2% 2% 2% 6%;">{{user.name}}'s Posts:</h1>
+  <app-post-list [posts]="posts"></app-post-list>
+  <h1 style="margin-bottom:4vm; padding: 2% 2% 2% 6%;">{{user.name}}'s Comments:</h1>
+  <div class="list-group" style="margin: 0 4% 0 4%" *ngFor="let comment of comments">
+    <div class="list-group-item">
+      {{comment.comments}}
     </div>
   </div>
 </div>

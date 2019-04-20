@@ -20,11 +20,12 @@ import { TagFormComponent} from './components/tag-form/tag-form.component';
 import { PostEditComponent } from './components/post-edit/post-edit.component';
 import {CommentsPostComponent} from './components/comments-post/comments-post.component';
 import { CommentFormComponent } from './components/comment-form/comment-form.component';
+import { PostListComponent } from './components/post-list/post-list.component';
+import { YourPostsComponent } from './components/your-posts/your-posts.component';
 import {MatButtonModule, MatCheckboxModule, MatIconModule, MatNavList, MatSidenavModule, MatToolbarModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
-
 import { CommentEditComponent } from './components/comment-edit/comment-edit.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -42,19 +43,22 @@ import { CommentEditComponent } from './components/comment-edit/comment-edit.com
     TagFormComponent,
     CommentsPostComponent,
     CommentFormComponent,
+    PostListComponent,
+    YourPostsComponent,
+    CommentFormComponent,
     CommentEditComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule,
     MatSidenavModule,
     BrowserAnimationsModule,
     MatButtonModule,
     MatIconModule,
     MatToolbarModule,
     MatCheckboxModule,
+    NgSelectModule,
     FormsModule
   ],
   providers: [BlogApiService, AuthService, AuthGuard, TagService],

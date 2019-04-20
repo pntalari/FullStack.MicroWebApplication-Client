@@ -3,7 +3,6 @@ import { Observable, of, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError, tap, map } from 'rxjs/operators';
 import { Tags } from 'src/app/models/Tag';
-import { Post} from '../models/Post';
 
 
 const httpOptions = {
@@ -31,19 +30,9 @@ export class TagService {
     return this.http.get('server/tags');
   }
 
-  findTagById(id: number) {
-    return this.http.get('server/tags/${id}');
-  }
-
-  findPostsByTag(tagName: string) {
-    const url = 'server/tags/posts/' + tagName;
-    return this.http.get(url);
-  }
-
-  findFilteredPostsByTag(tagNames) {
+  findFilteredPostsByTag(tagNames: string[]) {
     const url = 'server/tags/filteredPosts/' + tagNames;
-    return this.http.get(url).subscribe(data => {console.log(data); },
-      err => console.log('error'));
+    return this.http.get(url);
   }
 
   createTags(tag: Tags) {
@@ -72,6 +61,12 @@ export class TagService {
   deleteTags(tagName: string) {
     const url = 'server/deleteTags/' + tagName;
     return this.http.delete(url, httpOptions).subscribe(data => {console.log(data); },
+      err => console.log('error'));
+  }
+
+  addPost(tagId, post) {
+    const url = 'server/addPost/' + tagId;
+    return this.http.put(url, JSON.stringify(post), httpOptions).subscribe(data => {console.log(data); },
       err => console.log('error'));
   }
 }
