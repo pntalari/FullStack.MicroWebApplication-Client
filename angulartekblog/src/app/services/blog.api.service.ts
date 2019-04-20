@@ -108,4 +108,8 @@ export class BlogApiService {
 
   }
 
+  getCommentsByUser(userId) {
+    const url = 'server/users/comments/' + userId;
+    return this.http.get(url);
+  }
 }

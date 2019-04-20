@@ -30,13 +30,15 @@ export class UsersPostsComponent implements OnInit {
   getPosts(userId) {
     this.blogApiService.getPostsByUser(userId.params.value.id).subscribe(
       data => { this.posts = data; },
-      err => console.log(err),
-      () => console.log('posts loaded')
+      err => console.log(err)
     );
   }
 
   getComments(userId) {
-    this.blogApiService.get
+    this.blogApiService.getCommentsByUser(userId.params.value.id).subscribe(
+      data => { this.comments = data; },
+      err => console.log(err)
+    );
   }
 
 }

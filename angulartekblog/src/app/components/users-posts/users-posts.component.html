@@ -1,4 +1,10 @@
 <div>
   <h1 style="margin-bottom:4vm; padding: 2% 2% 2% 6%;">{{user.name}}'s Posts:</h1>
   <app-post-list [posts]="posts"></app-post-list>
+  <h1 style="margin-bottom:4vm; padding: 2% 2% 2% 6%;">{{user.name}}'s Comments:</h1>
+  <div class="list-group" style="margin: 0 4% 0 4%" *ngFor="let comment of comments">
+    <div class="list-group-item">
+      {{comment.comments}}
+    </div>
+  </div>
 </div>
