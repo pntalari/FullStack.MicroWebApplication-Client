@@ -22,6 +22,11 @@ import {CommentsPostComponent} from './components/comments-post/comments-post.co
 import { CommentFormComponent } from './components/comment-form/comment-form.component';
 import { PostListComponent } from './components/post-list/post-list.component';
 import { YourPostsComponent } from './components/your-posts/your-posts.component';
+import {MatButtonModule, MatCheckboxModule, MatIconModule, MatNavList, MatSidenavModule, MatToolbarModule} from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { CommentEditComponent } from './components/comment-edit/comment-edit.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,13 +44,23 @@ import { YourPostsComponent } from './components/your-posts/your-posts.component
     CommentsPostComponent,
     CommentFormComponent,
     PostListComponent,
-    YourPostsComponent
+    YourPostsComponent,
+    CommentFormComponent,
+    CommentEditComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    MatSidenavModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatCheckboxModule,
+    FormsModule,
+    NgSelectModule
   ],
   providers: [BlogApiService, AuthService, AuthGuard, TagService],
   bootstrap: [AppComponent]

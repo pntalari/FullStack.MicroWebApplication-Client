@@ -11,9 +11,9 @@ import {TagService} from '../../services/tag.service';
 export class PostFormComponent implements OnInit {
  // @Input() model: Post;
 
-  public model = new Post(null, '', '', '', new Date(), null, null, '');
+  public model = new Post(null, '', '', '', new Date(), null, [], '');
   public submitted = false;
-  public tags;
+  public tags = [{tagName: 'testing'}];
 
   constructor(private blogApiService: BlogApiService, private tagService: TagService) {}
 
@@ -21,14 +21,15 @@ export class PostFormComponent implements OnInit {
     this.getTags();
   }
 
-  getTags(){
+  getTags() {
     this.tagService.findAllTags().subscribe(
-      data => { this.tags = data; },
+      (data: any) => { this.tags = data; },
       err => console.log(err));
   }
 
   onSubmit() {
     this.blogApiService.createPost(this.model);
+   // this.model.tagsSet.forEach(tag => this.tagService.addPost(tag.id, this.model));
     this.submitted = true;
   }
 

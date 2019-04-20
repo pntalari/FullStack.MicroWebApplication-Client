@@ -39,6 +39,12 @@ export class TagService {
     return this.http.get(url);
   }
 
+  findFilteredPostsByTag(tagNames: string[]) {
+    const url = 'server/tags/filteredPosts/' + tagNames;
+    return this.http.get(url).subscribe(data => {console.log(data); },
+      err => console.log('error'));
+  }
+
   createTags(tag: Tags) {
     this.http.post('server/createTag', JSON.stringify(tag),
       httpOptions).subscribe(data => {console.log(data); },
@@ -65,6 +71,12 @@ export class TagService {
   deleteTags(tagName: string) {
     const url = 'server/deleteTags/' + tagName;
     return this.http.delete(url, httpOptions).subscribe(data => {console.log(data); },
+      err => console.log('error'));
+  }
+
+  addPost(tagId, post) {
+    const url = 'server/addPost/' + tagId;
+    return this.http.put(url, JSON.stringify(post), httpOptions).subscribe(data => {console.log(data); },
       err => console.log('error'));
   }
 }

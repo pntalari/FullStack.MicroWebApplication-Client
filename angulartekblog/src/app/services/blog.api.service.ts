@@ -87,4 +87,25 @@ export class BlogApiService {
     return this.http.get(url);
   }
 
+  deleteComment(commentId) {
+    this.http.delete('server/comment/delete/' + commentId, httpOptions)
+      .subscribe(data => {
+          console.log(data);
+        },
+        err => {
+          console.log('Error occurred deleting the comment');
+        });
+  }
+
+  updateComment(comment: Comments) {
+    this.http.put('server/comment/update/' + comment.commentId, JSON.stringify(comment), httpOptions)
+      .subscribe(data => {
+          console.log(data);
+        },
+        err => {
+          console.log('Error occurred updating the comment');
+        });
+
+  }
+
 }

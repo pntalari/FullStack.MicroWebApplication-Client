@@ -9,7 +9,7 @@ import {BlogApiService} from '../../services/blog.api.service';
 })
 export class UsersPostsComponent implements OnInit {
   public posts;
-  public user;
+  public user = {name: ''};
 
   constructor(private userId: ActivatedRoute, private userListService: BlogApiService) { }
 
@@ -20,7 +20,7 @@ export class UsersPostsComponent implements OnInit {
 
   getUser(userId) {
     this.userListService.getUserById(userId.params.value.id).subscribe(
-      data => {this.user = data; },
+      (data: any) => {this.user = data; },
       err => console.log(err)
     );
   }

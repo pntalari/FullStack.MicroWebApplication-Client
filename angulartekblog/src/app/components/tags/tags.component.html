@@ -1,7 +1,43 @@
-<div class="container">
-  <p *ngFor="let tag of tags">
-    <input (change)="onToggle(tag)" type="checkbox">
-    {{ tag.tagName }}
-    <button (click)="onDelete(tag)" class="del">x</button>
-  </p>
+<!--<div class="sidenav">-->
+  <!--<mat-sidenav mode="push" opened style="position: relative">-->
+    <!--<mat-sidenav-container *ngFor="let tag of tags" [hasBackdrop]="true">-->
+    <!--<mat-checkbox (change)="onToggle(tag.tagName)">-->
+      <!--{{ tag.tagName }}-->
+    <!--</mat-checkbox>-->
+    <!--</mat-sidenav-container>-->
+  <!--</mat-sidenav>-->
+
+
+
+<!--</div>-->
+
+<!-- MUST READ -->
+<!-- (need to install npm install --save @angular/material @angular/cdk @angular/animations -->
+<!--<button (click)="onDelete(tag)" class="del">x</button>-->
+
+<button class="btn-dark" style="position: absolute; float: left" (click)="changeShowing()">Filter</button>
+
+<div style="min-height: 100vh" class="wrapper" [hidden]="!showing">
+
+  <!-- Sidebar -->
+  <nav id="sidebar">
+    <div class="sidebar-header">
+      <h3><u>Filter By:</u></h3>
+    </div>
+    <div *ngFor="let tag of tags">
+    <mat-checkbox (click)="onToggle(tag.tagName)">
+      {{tag.tagName}}
+    </mat-checkbox>
+    </div>
+
+
+    <!--<div *ngFor="let tag of tags">-->
+      <!--<input type="checkbox" (click)="onToggle(tag.tagName)">-->
+      <!--{{tag.tagName}}-->
+    <!--</div>-->
+
+  </nav>
 </div>
+
+
+

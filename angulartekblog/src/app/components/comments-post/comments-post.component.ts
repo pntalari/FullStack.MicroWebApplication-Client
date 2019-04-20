@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {BlogApiService} from '../../services/blog.api.service';
 import {CommentsPostService} from '../../services/comments-post.service';
 @Component({
   selector: 'app-comments-post',
@@ -11,13 +10,13 @@ export class CommentsPostComponent implements OnInit {
   public  comment;
   public post;
 
-  constructor(private commentId: ActivatedRoute, private commentsPostService: CommentsPostService) { }
+  constructor(private commentId: ActivatedRoute, private blogApiService: BlogApiService) { }
 
   ngOnInit() {
     this.getComments(this.post.getId());
   }
   getComments(postId) {
-    this.commentsPostService.getCommentsByPost(postId.params.value.id).subscribe(
+    this.blogApiService.getCommentsByPost(postId.params.value.id).subscribe(
       data => { this.post = data; },
       err => console.log(err),
     );

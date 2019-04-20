@@ -42,5 +42,13 @@ export class CommentFormComponent implements OnInit {
     this.model = new Comments(null, '', new Date(), null, {id: null, name: localStorage.getItem('username')});
     this.showing = false;
   }
+  onDelete(commentId) {
+    this.blogApiService.deleteComment(commentId);
+    this.comments = this.comments.filter( comment => comment.commentId !== commentId);
+  }
+
+  onUpdate() {
+    this.blogApiService.updateComment(this.model);
+  }
 
 }

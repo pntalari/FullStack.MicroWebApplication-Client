@@ -35,10 +35,24 @@
           Content is required
         </div>
       </div>
+<!--      -->
+<!--      <ng-select-->
+<!--        [items]="tags"-->
+<!--        [multiple]="true"-->
+<!--        bindLabel="name"-->
+<!--        bindValue="tagName"-->
+<!--        [selectableGroup]="true"-->
+<!--        [closeOnSelect]="false"-->
+<!--        [(ngModel)]="model.tagsSet">-->
+<!--        <ng-template ng-optgroup-tmp let-item="item" let-item$="item$" let-index="index">-->
+<!--          <label for="item-{{index}}">Tags</label>-->
+<!--          <input id="item-{{index}}" [checked]="item$.selected" type="checkbox"/> {{item.name}}-->
+<!--        </ng-template>-->
+<!--      </ng-select>-->
       <div class="form-group">
-        <label for="exampleSelect2">Example multiple select</label>
-        <select multiple="" class="form-control" id="exampleSelect2">
-          <option *ngFor="let tag of tags">{{tag.tagName}}</option>
+        <label for="tags">Tags (Hold control to select multiple)</label>
+        <select [(ngModel)]="model.tagsSet" multiple="" class="form-control" id="tags" name="tags">
+          <option *ngFor="let tag of tags" [value]="tag">{{tag.tagName}}</option>
         </select>
       </div>
 

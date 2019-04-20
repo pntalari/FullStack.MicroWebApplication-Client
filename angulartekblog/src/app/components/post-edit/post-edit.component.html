@@ -1,3 +1,6 @@
+
+<button class="btn btn-block btn-primary" style="margin-top: 2%; margin-bottom: 2%" [routerLink]="['/post/', model.postID]">View Post</button>
+
 <div class="container">
   <div [hidden]="!creator || deleted">
     <h1>Edit Post Form</h1>
@@ -51,3 +54,4 @@
     <h1 style="color: crimson">You can't edit someone else's post</h1>
   </div>
 </div>
+
