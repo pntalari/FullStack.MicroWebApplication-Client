@@ -1,77 +1,13 @@
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
 
-#sidebar {
-  top: 2%; position: sticky; min-height: 100%; z-index: 1;
+#alert {
+  top: 0; position: sticky; height: 100%; z-index: 2; float: left;
   background: #5CCC5E;
   color: #fff;
   transition: all 0.3s;
-  width: 25%;
-  padding: 2% 2% 2% 5%;
-}
-
-#sidebar.active {
-  margin-left: -250px;
-}
-
-
-body {
-  font-family: 'Poppins', sans-serif;
-  background: #fafafa;
-}
-
-p {
-  font-family: 'Poppins', sans-serif;
-  font-size: 1.1em;
-  font-weight: 300;
-  line-height: 1.7em;
-  color: #999;
-}
-
-a, a:hover, a:focus {
-  color: inherit;
-  text-decoration: none;
-  transition: all 0.3s;
-}
-
-
-#sidebar .sidebar-header {
-  padding: 20px;
-  background: #5CCC5E;
-}
-
-#sidebar ul.components {
-  padding: 20px 0;
-  border-bottom: 1px solid #47748b;
-}
-
-#sidebar ul p {
-  color: #fff;
-  padding: 10px;
-}
-
-#sidebar ul li a {
-  padding: 10px;
-  font-size: 1.1em;
-  display: block;
-}
-#sidebar ul li a:hover {
-  color: #5CCC5E;
-  background: #fff;
-}
-
-#sidebar ul li.active > a, a[aria-expanded="true"] {
-  color: #fff;
-  background: #5ccc5e;
-}
-ul ul a {
-  font-size: 0.9em !important;
-  padding-left: 30px !important;
-  background: #5CCC5E;
-}
-
-a[data-toggle="collapse"] {
-  position: relative;
+  width: 15%;
+  padding: 1% 1% 1% 1%;
 }
 
 ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
@@ -80,6 +16,14 @@ a[data-toggle="collapse"] {
 
 ::ng-deep .mat-ripple-element {
   background: #0392B5 !important;
+}
+
+button.btn {
+  top: 0; width: 15%; position: sticky; float: left; z-index: 2; background-color: #5CCC5E; color: white;
+}
+
+.btn:focus {
+  outline: none;
 }
 
 

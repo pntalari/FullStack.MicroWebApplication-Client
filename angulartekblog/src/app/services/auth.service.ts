@@ -52,7 +52,10 @@ export class AuthService {
     localStorage.removeItem('userid');
     localStorage.removeItem('username');
     // Go back to the home route
-    this.router.navigate(['/']);
+    this.auth0.logout({
+      returnTo: 'http://localhost:4200/'
+    });
+    // window.location.href = 'https://whatthetek.auth0.com/v2/logout';
   }
 
   public isAuthenticated(): boolean {
