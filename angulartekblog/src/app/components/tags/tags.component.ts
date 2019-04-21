@@ -12,7 +12,7 @@ export class TagsComponent implements OnInit {
   public filteredTagList: string[] = [];
   @Input() public totalPosts: any[];
   public filteredPost: any[];
-  public showing = false;
+  public showing: boolean;
   @Output() filter = new EventEmitter<any>();
 
   constructor(private tagService: TagService) { }
@@ -21,6 +21,7 @@ export class TagsComponent implements OnInit {
 
   ngOnInit() {
     this.getTags();
+    this.showing = false;
   }
 
   getTags() {
