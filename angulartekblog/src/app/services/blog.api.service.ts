@@ -12,14 +12,20 @@ const httpOptions = {
 })
 export class BlogApiService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   signUp() {
     const token = localStorage.getItem('access_token');
     return this.http.post('server/users/sign-up', localStorage.getItem('id_token'),
       {headers: new HttpHeaders().set('Authorization', 'Bearer ' + token)})
-      .subscribe((data: any) => {localStorage.setItem('userid', data.id); localStorage.setItem('username', data.name); },
-        err => {console.log('error occurred'); });
+      .subscribe((data: any) => {
+          localStorage.setItem('userid', data.id);
+          localStorage.setItem('username', data.name);
+        },
+        err => {
+          console.log('error occurred');
+        });
   }
 
   getUsers() {
@@ -52,22 +58,35 @@ export class BlogApiService {
   }
 
   createPost(post: Post) {
+    console.log(localStorage.getItem('access_token'));
     return this.http.post('server/users/createPost/' + localStorage.getItem('id_token'), JSON.stringify(post), httpOptions)
-      .subscribe(data => {console.log(data); },
-         err => { console.log('error occurred creating post'); });
+      .subscribe(data => {
+          console.log(data);
+        },
+        err => {
+          console.log('error occurred creating post');
+        });
   }
 
   deletePost(postID) {
     this.http.delete('server/users/deletePost/' + postID,
       {headers: new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('access_token'))})
-      .subscribe(data => {console.log(data); },
-        err => { console.log('Error occurred deleting the post'); });
+      .subscribe(data => {
+          console.log(data);
+        },
+        err => {
+          console.log('Error occurred deleting the post');
+        });
   }
 
   updatePost(post: Post) {
     this.http.put('server/users/updatePost/' + post.postID, JSON.stringify(post), httpOptions)
-      .subscribe(data => {console.log(data); },
-        err => { console.log('Error occured updating the post'); });
+      .subscribe(data => {
+          console.log(data);
+        },
+        err => {
+          console.log('Error occured updating the post');
+        });
   }
 
   createComment(comment: Comments) {
@@ -82,6 +101,7 @@ export class BlogApiService {
           console.log('error occurred creating comment');
         });
   }
+
   getCommentsByPost(postId: number) {
     const url = 'server/comments/post/' + postId;
     return this.http.get(url);
@@ -111,5 +131,16 @@ export class BlogApiService {
   getCommentsByUser(userId) {
     const url = 'server/users/comments/' + userId;
     return this.http.get(url);
+  }
+
+  uploadImage(myFile: FormData) {
+    const url = 'server/uploadFile';
+    return this.http.post(url, myFile)
+      .subscribe(data => {
+          console.log(data);
+        },
+        err => {
+          console.log('Error occurred updating the post');
+        });
   }
 }

@@ -9,6 +9,8 @@ export class Post {
     public createdDate: Date,
     public comments: Comments[],
     public tagsSet: any[],
-    public creator: {}
-  ) {}
+    public creator: {},
+    public myFile: string /* property of File type */
+  ) {
+  }
 }

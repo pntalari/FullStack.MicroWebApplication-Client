@@ -1,4 +1,5 @@
-<div style="height: 100vh; padding-top: 10%; background-size: cover; background-image: url(https://www.articlesplanet.info/wp-content/uploads/2018/05/Tech-sector.jpg)">
+<div class="backgroundImage"
+  [ngStyle]="{ 'background-image': 'url(' + imageUrl + ')'}" >
   <div class="jumbotron" style="margin: 2% 5% 0% 5%;">
     <h1 style="font-size: 7vmin; margin-top: -5vmin">{{post.postTitle}}</h1><br/>
     <div class="btn-group btn-group-toggle" data-toggle="buttons" *ngFor="let tag of tags">
@@ -6,7 +7,8 @@
     </div>
     <div [routerLink]="['/users/posts/', post.creator.id]">By: {{post.creator.name}}</div>
     <div>Posted Date: {{post.createdDate}}</div>
-    <h3>{{post.postSummary}}</h3><br/>
+    <h3>{{post.postSummary}}</h3>
+    <img [src]=imageUrl alt="PlaceHolder" class="rounded-circle" height="80">
     <div>{{post.postContent}}</div>
   </div>
   <div style="margin: 1% 5% 0 5%;">

@@ -11,8 +11,10 @@ import {Router} from '@angular/router';
 })
 export class PostFormComponent implements OnInit {
 
-  public model = new Post(null, '', '', '', new Date(), null, [], '');
+  public model = new Post(null, '', '', '', new Date(), null, [], '', null);
   public tags = [{tagName: 'testing'}];
+
+  selectedFile: File;
 
   constructor(public router: Router, private blogApiService: BlogApiService, private tagService: TagService) {}
 
@@ -27,12 +29,20 @@ export class PostFormComponent implements OnInit {
   }
 
   onSubmit() {
+    const uploadData = new FormData();
+    uploadData.append('file', this.selectedFile, this.selectedFile.name);
+    this.model.myFile = this.selectedFile.name;
+    this.blogApiService.uploadImage(uploadData);
     this.blogApiService.createPost(this.model);
     this.router.navigate(['/posts/']);
   }
 
+  onFileChange(event) {
+    this.selectedFile = event.target.files[0];
+  }
+
   newPost() {
-    this.model = new Post(null, '', '', '', new Date(), null, null, '');
+    this.model = new Post(null, '', '', '', new Date(), null, null, '', null);
   }
 }
 

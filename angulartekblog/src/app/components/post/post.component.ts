@@ -10,8 +10,9 @@ import {Post} from '../../models/Post';
 })
 export class PostComponent implements OnInit {
   public post = new Post(null, null, null, null, null, null,
-    null, {id: null, name: ''});
+    null, {id: null, name: ''}, null);
   public tags;
+  public imageUrl = '../../assets/images/defaultBackground.jpeg';
 
   constructor(private postId: ActivatedRoute, private blogApiService: BlogApiService) { }
 
@@ -19,6 +20,7 @@ export class PostComponent implements OnInit {
     this.getPost(this.postId);
     this.getTags(this.postId);
   }
+
 
   getTags(postId) {
     this.blogApiService.getPostTags(postId.params.value.id).subscribe(
@@ -29,9 +31,14 @@ export class PostComponent implements OnInit {
 
   getPost(postId) {
     this.blogApiService.getPostById(postId.params.value.id).subscribe(
-      (data: Post) => { this.post = data; },
+      (data: Post) => { this.post = data; this.setImage(data.myFile); },
       err => console.log(err),
     );
   }
 
+  private setImage(myFile: string) {
+    if (myFile !== null) {
+      this.imageUrl = 'server/downloadFile/' + myFile;
+    }
+  }
 }
