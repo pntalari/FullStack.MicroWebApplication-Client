@@ -1,0 +1,35 @@
+<div class="container">
+  <div [hidden]="submitted">
+    <form (ngSubmit)="onSubmit()" #tagForm="ngForm">
+      <div class="form-group">
+        <label for="title">Add Tag</label>
+        <input type="text" class="form-control" id="title"
+               required
+               [(ngModel)]="model.tagName" name="name"
+               #name="ngModel">
+        <div [hidden]="name.valid || name.pristine"
+             class="alert alert-danger">
+          Title is required
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-success" [disabled]="!tagForm.form.valid">Submit</button>
+      <button type="button" class="btn btn-default" (click)="newTag(); tagForm.reset()">New Post</button>
+    </form>
+  </div>
+
+  <div [hidden]="!submitted">
+    <h2>You submitted the following:</h2>
+    <div class="row">
+      <div class="col-xs-3">Id</div>
+      <div class="col-xs-9">{{ model.id }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Name</div>
+      <div class="col-xs-9">{{ model.tagName }}</div>
+    </div>
+
+    <br>
+    <button class="btn btn-primary" (click)="submitted=false">Edit</button>
+  </div>
+</div>

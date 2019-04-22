@@ -1,0 +1,76 @@
+
+
+<button class="btn btn-block btn-success" style="margin-top: 2%; margin-bottom: 2%" [routerLink]="['/post/', model.postID]">View Post</button>
+
+<div style="margin-bottom: 2%" class="container">
+  <div [hidden]="!creator">
+    <h1>Edit Post</h1>
+    <form (ngSubmit)="onUpdate()" #postForm="ngForm">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" id="title"
+               required
+               [(ngModel)]="model.postTitle" name="name"
+               #name="ngModel">
+        <div [hidden]="name.valid || name.pristine"
+             class="alert alert-danger">
+          Title is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="summary">Summary</label>
+        <input type="text" class="form-control" id="summary"
+               [(ngModel)]="model.postSummary" name="summary"
+               #name="ngModel">
+        <div [hidden]="name.valid || name.pristine"
+             class="alert alert-danger">
+          Summary is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="content">Content</label>
+        <textarea class="form-control" id="content"
+                  [(ngModel)]="model.postContent" name="content"
+                  #name="ngModel" style="padding-bottom: 15%"></textarea>
+        <div [hidden]="name.valid || name.pristine"
+             class="alert alert-danger">
+          Content is required
+        </div>
+      </div>
+
+      <ng-select
+        [items]="tags"
+        [multiple]="true"
+        [closeOnSelect]="false"
+        [searchable]="false"
+        bindLabel="tagName"
+        placeholder="Select tags"
+        [(ngModel)]="model.tagsSet" name="tags"
+        style="margin-bottom: 3%">
+      </ng-select>
+
+
+      <div class="form-group">
+        <label for="singleFileUpload">Upload Image</label>
+        <input id="singleFileUpload" type="file" class="custom-file-input" required
+               [(ngModel)]="model.myFile" name="myFile" (change)="onFileChange($event)"/>
+      </div>
+      <div class="upload-response">
+        <div id="singleFileUploadError"></div>
+        <div id="singleFileUploadSuccess"></div>
+      </div>
+
+      <button type="submit" class="btn btn-success" [disabled]="!postForm.form.valid">Submit</button>
+      <button class="btn btn-danger" (click)="onDelete()">Delete</button>
+
+    </form>
+  </div>
+
+  <div [hidden]="creator">
+    <h1 style="color: crimson">You can't edit someone else's post</h1>
+  </div>
+</div>
+
+

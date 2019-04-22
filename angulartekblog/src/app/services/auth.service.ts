@@ -15,7 +15,7 @@ export class AuthService {
     scope: 'profile openid view:user view:users'
   });
 
-  constructor(public router: Router, private userListService: BlogApiService ) {}
+  constructor(public router: Router, private blogApiService: BlogApiService ) {}
 
   public login(): void {
     this.auth0.authorize();
@@ -26,9 +26,9 @@ export class AuthService {
       if (authResult && authResult.accessToken && authResult.idToken) {
         window.location.hash = '';
         this.setSession(authResult);
-        this.router.navigate(['users']);
+        this.router.navigate(['/']);
       } else if (err) {
-        this.router.navigate(['users']);
+        this.router.navigate(['/']);
         console.log(err);
       }
     });
@@ -38,8 +38,9 @@ export class AuthService {
     // Set the time that the access token will expire at
     const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
     localStorage.setItem('access_token', authResult.accessToken);
+    // console.log(authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
-    this.userListService.signUp();
+    this.blogApiService.signUp();
     localStorage.setItem('expires_at', expiresAt);
   }
 
@@ -48,8 +49,13 @@ export class AuthService {
     localStorage.removeItem('access_token');
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
+    localStorage.removeItem('userid');
+    localStorage.removeItem('username');
     // Go back to the home route
-    this.router.navigate(['/']);
+    this.auth0.logout({
+      returnTo: 'http://localhost:4200/'
+    });
+    // window.location.href = 'https://whatthetek.auth0.com/v2/logout';
   }
 
   public isAuthenticated(): boolean {

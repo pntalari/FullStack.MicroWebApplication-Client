@@ -9,18 +9,35 @@ import {BlogApiService} from '../../services/blog.api.service';
 })
 export class UsersPostsComponent implements OnInit {
   public posts;
+  public user = {name: ''};
+  public comments;
 
-  constructor(private userId: ActivatedRoute, private userListService: BlogApiService) { }
+  constructor(private userId: ActivatedRoute, private blogApiService: BlogApiService) { }
 
   ngOnInit() {
+    this.getUser(this.userId);
     this.getPosts(this.userId);
+    this.getComments(this.userId);
+  }
+
+  getUser(userId) {
+    this.blogApiService.getUserById(userId.params.value.id).subscribe(
+      (data: any) => {this.user = data; },
+      err => console.log(err)
+    );
   }
 
   getPosts(userId) {
-    this.userListService.getPostsByUser(userId.params.value.id).subscribe(
+    this.blogApiService.getPostsByUser(userId.params.value.id).subscribe(
       data => { this.posts = data; },
-      err => console.log(err),
-      () => console.log('posts loaded')
+      err => console.log(err)
+    );
+  }
+
+  getComments(userId) {
+    this.blogApiService.getCommentsByUser(userId.params.value.id).subscribe(
+      data => { this.comments = data; },
+      err => console.log(err)
     );
   }
 

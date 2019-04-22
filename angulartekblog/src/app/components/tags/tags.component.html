@@ -1,0 +1,17 @@
+
+<!-- MUST READ -->
+<!-- (need to install npm install --save @angular/material @angular/cdk @angular/animations -->
+<!--<button (click)="onDelete(tag)" class="del">x</button>-->
+<button class="btn btn-outline-primary" [hidden]="showing" (click)="changeShowing()">Tags</button>
+  <!-- Sidebar -->
+<div id="alert" class="alert alert-dismissible alert-success" [hidden]="!showing">
+  <button type="button" class="close" (click)="changeShowing()"><i class="fa fa-times"></i></button>
+  <div *ngFor="let tag of tags">
+    <mat-checkbox (click)="onToggle(tag.tagName)">
+      {{tag.tagName}}
+    </mat-checkbox>
+  </div>
+</div>
+
+
+

@@ -1,3 +1,5 @@
+import {Comments} from './Comments';
+
 export class Post {
   constructor(
     public postID: number,
@@ -5,8 +7,10 @@ export class Post {
     public postSummary: string,
     public postContent: string,
     public createdDate: Date,
-    public comments: any[],
+    public comments: Comments[],
     public tagsSet: any[],
-    public creator: any
-  ) {}
+    public creator: {},
+    public myFile: string /* property of File type */
+  ) {
+  }
 }

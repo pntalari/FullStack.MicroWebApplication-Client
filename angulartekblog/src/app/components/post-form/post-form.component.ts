@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Post} from '../../models/Post';
 import {BlogApiService} from '../../services/blog.api.service';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {TagService} from '../../services/tag.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-create-post',
@@ -10,46 +11,38 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 })
 export class PostFormComponent implements OnInit {
 
-  constructor(private http: HttpClient,
-              private blogApiService: BlogApiService) {
-  }
+  public model = new Post(null, '', '', '', new Date(), null, [], '', null);
+  public tags = [{tagName: 'testing'}];
 
-  selectedFile = null;
+  selectedFile: File;
 
-  model = new Post(null, '', '', '', new Date(), null, null, '');
-  submitted = false;
-
-  onSubmit() {
-    const fd = new FormData(this.selectedFile);
-    fd.append('Image', this.selectedFile, this.selectedFile.name);
-    this.http.post('http://localhost:4200/src/assets/images/', fd)
-      .subscribe(res => {
-        console.log(res);
-      });
-    this.blogApiService.createPost(this.model);
-    this.submitted = true;
-  }
-
-  OnEdit(model: Post) {
-    this.blogApiService.updatePost(model);
-    this.submitted = true;
-  }
-
-  onDelete() {
-    this.blogApiService.deletePost(this.model);
-    this.submitted = true;
-  }
+  constructor(public router: Router, private blogApiService: BlogApiService, private tagService: TagService) {}
 
   ngOnInit() {
+    this.getTags();
+  }
+
+  getTags() {
+    this.tagService.findAllTags().subscribe(
+      (data: any) => { this.tags = data; },
+      err => console.log(err));
+  }
+
+  onSubmit() {
+    const uploadData = new FormData();
+    uploadData.append('file', this.selectedFile, this.selectedFile.name);
+    this.model.myFile = this.selectedFile.name;
+    this.blogApiService.uploadImage(uploadData);
+    this.blogApiService.createPost(this.model);
+    this.router.navigate(['/posts/']);
+  }
+
+  onFileChange(event) {
+    this.selectedFile = event.target.files[0];
   }
 
   newPost() {
-    this.model = new Post(null, '', '', '', new Date(), null, null, '');
-  }
-
-  onSelectFile(event) {
-    this.selectedFile = event.target.files[0] as File;
-    console.log(event);
+    this.model = new Post(null, '', '', '', new Date(), null, null, '', null);
   }
 }
 
