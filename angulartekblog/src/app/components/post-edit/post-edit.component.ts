@@ -10,8 +10,9 @@ import {TagService} from '../../services/tag.service';
   styleUrls: ['./post-edit.component.css']
 })
 export class PostEditComponent implements OnInit {
-  private model = new Post(null, null, null, null, null, null, null, null);
-  private creator = true;
+  private model = new Post(null, null, null, null, null, null, null
+    , {name: localStorage.getItem('username')});
+  private creator = localStorage.getItem('username');
   public tags = [{tagName: 'testing'}];
 
   constructor(private postId: ActivatedRoute, private blogApiService: BlogApiService,
@@ -21,18 +22,12 @@ export class PostEditComponent implements OnInit {
     this.getPost(this.postId);
     this.getTags();
     this.getSelectedTags(this.postId);
-    setTimeout(() => {this.checkUser(); }, 400);
   }
 
   getTags() {
     this.tagService.findAllTags().subscribe(
       (data: any) => { this.tags = data; },
       err => console.log(err));
-  }
-
-  checkUser() {
-    // @ts-ignore
-    this.creator = localStorage.getItem('username') === this.model.creator.name;
   }
 
   getPost(postId) {
@@ -53,7 +48,7 @@ export class PostEditComponent implements OnInit {
     this.router.navigate(['/posts/']);
   }
 
-  private getSelectedTags(postId) {
+  getSelectedTags(postId) {
     this.blogApiService.getPostTags(postId.params.value.id).subscribe(
       (data: any) => {this.model.tagsSet = data; },
       err => console.log(err),
