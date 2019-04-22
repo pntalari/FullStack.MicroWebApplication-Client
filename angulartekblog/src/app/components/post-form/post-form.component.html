@@ -1,7 +1,3 @@
-<div id="bg">
-  <img src="assets/images/background.jpg" alt="">
-</div>
-
 <div class="container">
   <h1>Post Form</h1>
   <form (ngSubmit)="onSubmit()" #postForm="ngForm">
@@ -54,7 +50,7 @@
     <div class="form-group">
       <label for="singleFileUpload">Upload Image</label>
       <input id="singleFileUpload" type="file" class="custom-file-input"
-             [(ngModel)]="model.myFile" name="myFile" (change)="onFileChange($event)"/>
+              name="myFile" (change)="onFileChange($event)"/>
     </div>
     <div class="upload-response">
       <div id="singleFileUploadError"></div>

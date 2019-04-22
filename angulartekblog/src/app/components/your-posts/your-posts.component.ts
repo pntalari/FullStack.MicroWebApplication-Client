@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
 import {BlogApiService} from '../../services/blog.api.service';
 
 @Component({
@@ -21,7 +20,7 @@ export class YourPostsComponent implements OnInit {
 
   getPosts(userId) {
     this.userListService.getPostsByUser(userId).subscribe(
-      data => { this.posts = data; },
+      (data: any[]) => { this.posts = data.sort((a, b) => b.postID - a.postID); },
       err => console.log(err),
       () => console.log('posts loaded')
     );

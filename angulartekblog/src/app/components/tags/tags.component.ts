@@ -34,31 +34,6 @@ export class TagsComponent implements OnInit {
       () => console.log('users loaded')
     );
   }
-  onToggle(tagName: string) {
-    if (this.filteredTagList.indexOf(tagName) === -1) {
-      this.filteredTagList.push(tagName);
-      this.tagService.findFilteredPostsByTag(this.filteredTagList).subscribe(
-        (data: any[]) => { this.filteredPost = data; }
-      );
-    } else if (this.filteredTagList.indexOf(tagName) !== -1 && this.filteredTagList.length === 1) {
-      this.nothingToggled();
-    } else {
-      this.filteredTagList.splice(this.filteredTagList.indexOf(tagName), 1);
-      this.tagService.findFilteredPostsByTag(this.filteredTagList).subscribe(
-        (data: any[]) => { this.filteredPost = data; }
-      );
-    }
-    setTimeout(() => {this.filter.emit(this.filteredPost); }, 100);
-  }
-
-  onDelete(tag: Tags) {
-    this.deleteTag.emit(tag);
-    // Delete from UI
-    this.tags = this.tags.filter(t => t.tagName !== tag.tagName);
-    // Delete from Server
-    this.tagService.deleteTags(tag.tagName);
-    alert('Tag is deleted');
-  }
 
   nothingToggled() {
     this.filteredPost = this.totalPosts;
