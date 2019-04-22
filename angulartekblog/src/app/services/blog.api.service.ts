@@ -58,6 +58,7 @@ export class BlogApiService {
   }
 
   createPost(post: Post) {
+    console.log(localStorage.getItem('access_token'));
     return this.http.post('server/users/createPost/' + localStorage.getItem('id_token'), JSON.stringify(post), httpOptions)
       .subscribe(data => {
           console.log(data);

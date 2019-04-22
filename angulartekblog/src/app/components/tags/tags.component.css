@@ -6,7 +6,6 @@
   background: #5CCC5E;
   color: #fff;
   transition: all 0.3s;
-  width: 15%;
   padding: 1% 1% 1% 1%;
 }
 
@@ -24,6 +23,14 @@ button.btn {
 
 .btn:focus {
   outline: none;
+}
+
+button.ex {
+  color: #0392B5;
+  position: absolute;
+  top: 0;
+  padding: 0;
+  right: 0;
 }
 
 

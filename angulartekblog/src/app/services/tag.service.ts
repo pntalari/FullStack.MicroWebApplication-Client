@@ -64,9 +64,8 @@ export class TagService {
       err => console.log('error'));
   }
 
-  addPost(tagId, post) {
-    const url = 'server/addPost/' + tagId;
-    return this.http.put(url, JSON.stringify(post), httpOptions).subscribe(data => {console.log(data); },
-      err => console.log('error'));
+  getTag(tagId) {
+    const url = 'server/tags/' +  tagId;
+    return this.http.get(url);
   }
 }

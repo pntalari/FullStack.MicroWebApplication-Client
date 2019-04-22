@@ -26,6 +26,7 @@ import {MatButtonModule, MatCheckboxModule, MatIconModule, MatNavList, MatSidena
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { CommentEditComponent } from './components/comment-edit/comment-edit.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { TagPageComponent } from './components/tag-page/tag-page.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     PostListComponent,
     YourPostsComponent,
     CommentFormComponent,
-    CommentEditComponent
+    CommentEditComponent,
+    TagPageComponent
   ],
   imports: [
     BrowserModule,

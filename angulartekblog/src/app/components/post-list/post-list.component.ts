@@ -7,8 +7,14 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class PostListComponent implements OnInit {
 
-  @Input()
-  posts: any[];
+  private postsList: any[];
+
+  @Input() set posts(value: any[]) {
+    if (value !== undefined) {
+      this.postsList = value;
+      this.postsList = this.postsList.sort((a, b) => b.postID - a.postID);
+    }
+  }
 
   constructor() { }
 

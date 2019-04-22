@@ -5,9 +5,9 @@
 <button class="btn btn-outline-primary" [hidden]="showing" (click)="changeShowing()">Tags</button>
   <!-- Sidebar -->
 <div id="alert" class="alert alert-dismissible alert-success" [hidden]="!showing">
-  <button type="button" class="close" (click)="changeShowing()"><i class="fa fa-times"></i></button>
+  <button type="button" class="ex" (click)="changeShowing()"><i class="fa fa-times"></i></button>
   <div *ngFor="let tag of tags">
-    <mat-checkbox (click)="onToggle(tag.tagName)">
+    <mat-checkbox (change)="changeFiltered(tag.tagName, $event)">
       {{tag.tagName}}
     </mat-checkbox>
   </div>
