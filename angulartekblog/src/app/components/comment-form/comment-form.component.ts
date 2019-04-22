@@ -19,7 +19,6 @@ export class CommentFormComponent implements OnInit {
   ngOnInit() {
    this.setPost(this.postId);
    this.getComments(this.postId);
-   console.log(this.creator);
   }
 
   getComments(postId) {
