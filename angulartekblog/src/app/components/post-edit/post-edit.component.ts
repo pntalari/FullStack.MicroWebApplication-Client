@@ -41,9 +41,11 @@ export class PostEditComponent implements OnInit {
 
   onUpdate() {
     const uploadData = new FormData();
-    uploadData.append('file', this.selectedFile, this.selectedFile.name);
-    this.model.myFile = this.selectedFile.name;
-    this.blogApiService.uploadImage(uploadData);
+    if (this.selectedFile !== undefined) {
+      uploadData.append('file', this.selectedFile, this.selectedFile.name);
+      this.model.myFile = this.selectedFile.name;
+      this.blogApiService.uploadImage(uploadData);
+    }
     this.blogApiService.updatePost(this.model);
     this.router.navigate(['/posts/']);
   }
