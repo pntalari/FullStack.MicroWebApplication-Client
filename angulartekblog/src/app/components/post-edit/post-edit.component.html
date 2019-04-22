@@ -1,6 +1,5 @@
-
-
-<button class="btn btn-block btn-success" style="margin-top: 2%; margin-bottom: 2%" [routerLink]="['/post/', model.postID]">View Post</button>
+<br/>
+<button class="btn btn-block btn-success" [routerLink]="['/post/', model.postID]">View Post</button>
 
 <div style="margin-bottom: 2%" class="container">
   <div [hidden]="model.creator.name !== creator">
@@ -68,5 +67,6 @@
     <h1 style="color: crimson">You can't edit someone else's post</h1>
   </div>
 </div>
+
 
 
