@@ -9,11 +9,11 @@ import {Tags} from '../../models/Tag';
 })
 export class TagsComponent implements OnInit {
   public tags;
-  public filteredTagList: string[] = [];
+  public filteredTagList: any[];
   @Input() public totalPosts: any[];
+  @Output() filter = new EventEmitter<any>();
   public filteredPost: any[];
   public showing: boolean;
-  @Output() filter = new EventEmitter<any>();
 
   constructor(private tagService: TagService) { }
   @Output() deleteTag: EventEmitter<Tags> = new EventEmitter();
@@ -21,6 +21,7 @@ export class TagsComponent implements OnInit {
 
   ngOnInit() {
     this.getTags();
+    this.filteredTagList = [];
     this.showing = false;
   }
 
@@ -47,7 +48,7 @@ export class TagsComponent implements OnInit {
         (data: any[]) => { this.filteredPost = data; }
       );
     }
-    setTimeout(() => {this.filter.emit(this.filteredPost); }, 400);
+    setTimeout(() => {this.filter.emit(this.filteredPost); }, 100);
   }
 
   onDelete(tag: Tags) {
@@ -67,4 +68,24 @@ export class TagsComponent implements OnInit {
     this.showing = !this.showing;
   }
 
+  changeFiltered(tagName: string, event) {
+    if (event.checked) {
+      this.filteredTagList.push(tagName);
+    } else {
+      this.filteredTagList.splice(this.filteredTagList.indexOf(tagName), 1);
+    }
+    this.getPosts();
+  }
+
+  private getPosts() {
+    if (this.filteredTagList.length === 0 ) {
+      this.filteredPost = this.totalPosts; this.filter.emit(this.filteredPost);
+    } else {
+      this.tagService.findFilteredPostsByTag(this.filteredTagList).subscribe(
+        (data: any[]) => {
+          this.filteredPost = data; this.filter.emit(this.filteredPost);
+        }
+      );
+    }
+  }
 }
