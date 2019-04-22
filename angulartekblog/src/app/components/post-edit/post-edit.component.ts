@@ -12,7 +12,7 @@ import {TagService} from '../../services/tag.service';
 export class PostEditComponent implements OnInit {
   private model = new Post(null, null, null, null, null, null, null
     , {name: localStorage.getItem('username')});
-  private creator = true;
+  private creator = localStorage.getItem('username');
   public tags = [{tagName: 'testing'}];
 
   constructor(private postId: ActivatedRoute, private blogApiService: BlogApiService,
@@ -28,11 +28,6 @@ export class PostEditComponent implements OnInit {
     this.tagService.findAllTags().subscribe(
       (data: any) => { this.tags = data; },
       err => console.log(err));
-  }
-
-  checkUser() {
-    // @ts-ignore
-    this.creator = localStorage.getItem('username') === this.model.creator.name;
   }
 
   getPost(postId) {
