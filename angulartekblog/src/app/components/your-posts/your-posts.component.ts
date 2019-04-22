@@ -14,7 +14,9 @@ export class YourPostsComponent implements OnInit {
   constructor(private userListService: BlogApiService) { }
 
   ngOnInit() {
-    this.getPosts(localStorage.getItem('userid'));
+    setTimeout(() => {
+      this.getPosts(localStorage.getItem('userid'));
+    }, 500);
   }
 
   getPosts(userId) {

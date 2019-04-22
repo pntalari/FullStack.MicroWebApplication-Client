@@ -2,7 +2,7 @@
 <div>
   <div class="list-group" *ngFor="let comment of comments">
     <span [routerLink]="['/users/posts/', comment.user.id]">{{comment.user.name}}:</span>
-    <div>
+    <div [hidden]="comment.user.name !== creator">
       <i class="fa fa-edit" (click)="onUpdate()"></i>
       <i style="color: crimson" class="fa fa-trash" (click)="onDelete(comment.commentId)"></i>
     </div>

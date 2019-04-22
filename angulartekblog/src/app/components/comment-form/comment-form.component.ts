@@ -13,11 +13,13 @@ export class CommentFormComponent implements OnInit {
   public showing = false;
   public comments = [];
   model = new Comments(null, '', new Date(), null, {id: null, name: localStorage.getItem('username')});
+  creator = localStorage.getItem('username');
   constructor(private postId: ActivatedRoute, private blogApiService: BlogApiService) { }
 
   ngOnInit() {
    this.setPost(this.postId);
    this.getComments(this.postId);
+   console.log(this.creator);
   }
 
   getComments(postId) {

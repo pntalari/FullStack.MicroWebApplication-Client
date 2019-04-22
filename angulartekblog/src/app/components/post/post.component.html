@@ -1,7 +1,7 @@
 <div class="jumbotron" style="margin: 2% 5% 0% 5%; ">
   <h1 style="font-size: 7vmin; margin-top: -5vmin">{{post.postTitle}}</h1><br/>
   <div class="btn-group btn-group-toggle" data-toggle="buttons" *ngFor="let tag of tags">
-    <button class="btn btn-outline-primary">#{{tag}}</button>
+    <button class="btn btn-outline-primary">#{{tag.tagName}}</button>
   </div>
   <div [routerLink]="['/users/posts/', post.creator.id]">By: {{post.creator.name}}</div>
   <div>Posted Date: {{post.createdDate}}</div>
