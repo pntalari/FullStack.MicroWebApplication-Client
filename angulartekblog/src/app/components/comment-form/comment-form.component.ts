@@ -9,16 +9,17 @@ import {BlogApiService} from '../../services/blog.api.service';
   styleUrls: ['./comment-form.component.css']
 })
 export class CommentFormComponent implements OnInit {
-  public post;
-  public showing = false;
-  public comments = [];
-  model = new Comments(null, '', new Date(), null, {id: null, name: localStorage.getItem('username')});
-  creator = localStorage.getItem('username');
+  private post;
+  private showing = false;
+  private comments = [];
+  private model;
+  private creator = localStorage.getItem('username');
   constructor(private postId: ActivatedRoute, private blogApiService: BlogApiService) { }
 
   ngOnInit() {
    this.setPost(this.postId);
    this.getComments(this.postId);
+   this.resetModel();
   }
 
   getComments(postId) {
@@ -27,7 +28,7 @@ export class CommentFormComponent implements OnInit {
   }
   setPost(postId) {
     this.blogApiService.getPostById(postId.params.value.id)
-      .subscribe(data => {this.model.post = data; });
+      .subscribe(data => {this.post = data; });
   }
   onClick() {
     this.showing = !this.showing;
@@ -35,7 +36,7 @@ export class CommentFormComponent implements OnInit {
   onClickAdd() {
     this.blogApiService.createComment(this.model);
     this.comments.push(this.model);
-    this.model = new Comments(null, '', new Date(), null, {id: null, name: localStorage.getItem('username')});
+    this.resetModel();
     this.showing = false;
   }
   onDelete(commentId) {
@@ -43,8 +44,18 @@ export class CommentFormComponent implements OnInit {
     this.comments = this.comments.filter( comment => comment.commentId !== commentId);
   }
 
-  onUpdate() {
-    this.blogApiService.updateComment(this.model);
+  onUpdate(comment) {
+    if (comment !== this.model) {
+      this.model = comment;
+    } else {
+      this.blogApiService.updateComment(this.model);
+      this.resetModel();
+    }
+  }
+
+  resetModel() {
+    this.model = new Comments(null, '', new Date(), this.post,
+      {id: localStorage.getItem('userid'), name: localStorage.getItem('username')});
   }
 
 }

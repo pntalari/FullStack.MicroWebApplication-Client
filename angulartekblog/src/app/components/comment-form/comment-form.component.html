@@ -1,16 +1,20 @@
 
 <div style="background: aliceblue; border-radius: 5px">
   <div class="list-group" *ngFor="let comment of comments">
-    <div [routerLink]="['/users/posts/', comment.user.id]">
+
+    <div>
       <span [hidden]="comment.user.name !== creator">
-        <i style="margin-left: 1em" class="fa fa-edit" (click)="onUpdate()"></i>
+        <i style="margin-left: 1em" class="fa fa-edit" (click)="onUpdate(comment)"></i>
         <i style="color: crimson" class="fa fa-trash" (click)="onDelete(comment.commentId)"></i>
       </span>
-      {{comment.user.name}}:
+      <span [routerLink]="['/users/posts/', comment.user.id]">{{comment.user.name}}:</span>
     </div>
-    <div class="list-group-item">
+    <div class="list-group-item" [hidden]="model === comment">
       {{comment.comments}}
     </div>
+    <label [hidden]="model !== comment">
+      <input style="margin-left: 1%" [(ngModel)]="comment.comments" type="text">
+    </label>
   </div>
 </div>
 
