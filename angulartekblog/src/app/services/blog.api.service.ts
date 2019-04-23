@@ -85,7 +85,7 @@ export class BlogApiService {
           console.log(data);
         },
         err => {
-          console.log('Error occured updating the post');
+          console.log('Error occurred updating the post');
         });
   }
 

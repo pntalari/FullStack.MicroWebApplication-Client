@@ -51,14 +51,10 @@
       </ng-select>
 
 
-      <div class="form-group">
-        <label for="singleFileUpload">Upload Image</label>
-        <input id="singleFileUpload" type="file" class="custom-file-input"
-               name="myFile" (change)="onFileChange($event)"/>
-      </div>
-      <div class="upload-response">
-        <div id="singleFileUploadError"></div>
-        <div id="singleFileUploadSuccess"></div>
+      <div style="text-align:left">
+        <label> Upload Image:
+          <input type="file" (change)="onFileChange($event)">
+        </label>
       </div>
 
       <button type="submit" class="btn btn-success" [disabled]="!postForm.form.valid">Submit</button>
